@@ -7,9 +7,9 @@ require "ym_core/version"
 Gem::Specification.new do |s|
   s.name        = "ym_core"
   s.version     = YmCore::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
+  s.authors     = ["Matt Atkins", "Ian Mooney", "Si Wilkins"]
+  s.email       = ["matt@yoomee.com", "ian@yoomee.com", "si@yoomee.com"]
+  s.homepage    = "http://www.yoomee.com"
   s.summary     = "TODO: Summary of YmCore."
   s.description = "TODO: Description of YmCore."
 
