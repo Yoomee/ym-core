@@ -1,8 +1,10 @@
 module ActiveRecord
 
   class Base
+    
+    scope :scoped_all
 
-    def to_s      
+    def to_s
       if respond_to?(:name)
         name
       elsif respond_to?(:title)
@@ -11,8 +13,6 @@ module ActiveRecord
         super
       end
     end
-
-    scope :scoped_all
 
   end
 
