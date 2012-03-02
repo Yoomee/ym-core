@@ -1,0 +1,13 @@
+.nav-tabs > li.error > a {
+  color:#fff;
+  background: #b94a48;
+}
+
+.nav-tabs > .error > a:hover {
+  background: #b94a48;
+}
+
+.nav-tabs > li.error.active > a {
+  color:#b94a48;
+  background: #fff;
+}
