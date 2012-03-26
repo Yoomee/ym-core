@@ -4,7 +4,7 @@ module YmCore::ImageHelper
   class << self
     def download_image_url_prefix
       if @download_image_url_prefix.nil?
-        prod_site_url = Settings.site_url
+        prod_site_url = Settings.live_site_url
         prod_site_url.chomp!("/")
         if Settings.http_basic && Settings.http_basic.enabled
           http_auth = [Settings.http_basic.username,Settings.http_basic.password].join(':')
