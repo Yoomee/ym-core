@@ -1,4 +1,5 @@
 require "ym_core/engine"
+require 'dragonfly'
 
 module YmCore
 end
