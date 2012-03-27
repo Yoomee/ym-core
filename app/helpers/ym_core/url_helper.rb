@@ -1,5 +1,9 @@
 module YmCore::UrlHelper
   
+  def back_link
+    link_to('Back',:back)
+  end
+  
   def externalize_url(url)
     url =~ /^http:\/\// ? url : "http://#{url}"
   end
