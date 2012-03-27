@@ -1,3 +1,48 @@
+/*========== Defaults ==========*/
+
+br.clear {
+  clear: both;
+}
+.padding {
+  padding: 10px;
+}
+.no-margin {
+  margin: 0;
+}
+.margin-bottom {
+  margin-bottom: 20px;
+}
+.margin-top {
+  margin-top: 20px;
+}
+.upcase {
+  text-transform:uppercase;
+}
+.italic {
+  font-style: italic;
+}
+.loading * {
+  display:none;
+}
+.loading {
+  background: url(/assets/loader-circle.gif) no-repeat center center;
+  height: 16px;
+}
+.loading.loader-long {
+  background: url(/assets/loader-long.gif) no-repeat center center;
+  height: 19px;  
+}
+.loading.loader-circle {
+  background: url(/assets/loader-circle.gif) no-repeat center center;
+  height: 16px;  
+}
+.loading.loader-square {
+  background: url(/assets/loader-square.gif) no-repeat center center;
+  height: 11px;
+}
+
+/*========== Nav ==========*/
+
 .nav-tabs > li.error > a {
   color:#fff;
   background: #b94a48;
