@@ -1,6 +1,5 @@
 module YmCore::ImageHelper
 
-
   class << self
     def download_image_url_prefix
       if @download_image_url_prefix.nil?
@@ -30,6 +29,8 @@ module YmCore::ImageHelper
   end
 
   def image_for(object, geo_string, options = {})
+    width, height = width_height_from_geo_string(geo_string)
+    options.reverse_merge!(:alt => "#{(object.to_s || "")[0..(width || 50).to_i / 6]}...")    
     if object.image
       fetch_image_if_missing(object.image) if Rails.env.development?
       image_tag(object.image.thumb(geo_string).url, options)
