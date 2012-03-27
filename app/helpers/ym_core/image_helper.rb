@@ -31,8 +31,10 @@ module YmCore::ImageHelper
 
   def image_for(object, geo_string, options = {})
     if object.image
-      fetch_image_if_missing(object.image) if Rails.env == 'development'
+      fetch_image_if_missing(object.image) if Rails.env.development?
       image_tag(object.image.thumb(geo_string).url, options)
+    elsif object.default_image
+      image_tag(object.default_image.thumb(geo_string).url, options)
     else
       image_placeholder(geo_string, options)
     end

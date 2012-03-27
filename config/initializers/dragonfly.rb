@@ -21,6 +21,18 @@ end
 if defined?(ActiveRecord::Base)
   app.define_macro(ActiveRecord::Base, :image_accessor)
   app.define_macro(ActiveRecord::Base, :file_accessor)
+  
+  class ActiveRecord::Base
+    def default_image
+      Dragonfly::App[:images].fetch(default_image_relative_path)
+    end
+    
+    private
+    def default_image_relative_path
+      absolute_path = Dir.glob("#{Rails.root}/public/assets/dragonfly/defaults/#{self.class.to_s.underscore}-*").first.to_s
+      absolute_path.sub(Regexp.new(Rails.root.to_s), '../../..')
+    end
+  end
 end
 
 ### Insert the middleware ###
