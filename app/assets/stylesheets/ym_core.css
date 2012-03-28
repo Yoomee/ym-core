@@ -1,6 +1,6 @@
 /*========== Defaults ==========*/
 
-br.clear {
+.clear {
   clear: both;
 }
 .padding {
@@ -14,6 +14,22 @@ br.clear {
 }
 .margin-top {
   margin-top: 20px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.border-bottom {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
 }
 .upcase {
   text-transform:uppercase;
@@ -39,6 +55,10 @@ br.clear {
 .loading.loader-square {
   background: url(/assets/loader-square.gif) no-repeat center center;
   height: 11px;
+}
+.small-info-text {
+  font-size: 11px;
+  color: gray;
 }
 
 /*========== Nav ==========*/
