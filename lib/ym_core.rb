@@ -1,7 +1,11 @@
-require "ym_core/engine"
-require 'dragonfly'
 require 'will_paginate'
 require 'bootstrap-will_paginate'
+require "ym_core/engine"
+require 'haml'
+require 'jquery-rails'
+require 'decent_exposure'
+require 'formtastic'
+require 'dragonfly'
 require 'rails_rinku'
 
 module YmCore

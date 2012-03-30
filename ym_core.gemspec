@@ -18,9 +18,13 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 3.1.0"
   s.add_dependency 'rinku'
+  s.add_dependency 'haml'
+  s.add_dependency 'jquery-rails'
+  s.add_dependency "decent_exposure", "~> 1.0.1"
+  s.add_dependency "formtastic", "~> 2.0.2"  
   s.add_dependency "dragonfly", "~> 0.9.10"
   s.add_dependency "rails_config", "~> 0.2.6"
   s.add_dependency "will_paginate", "~> 3.0.3"
   s.add_dependency "bootstrap-will_paginate", "~> 0.0.6"
-  
+
 end
