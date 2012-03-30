@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.1.0"
+  s.add_dependency 'rinku'
   s.add_dependency "dragonfly", "~> 0.9.10"
   s.add_dependency "rails_config", "~> 0.2.6"
   s.add_dependency "will_paginate", "~> 3.0.3"
