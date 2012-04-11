@@ -26,13 +26,9 @@ module YmCore::LayoutHelper
 
   def body_tag(options = {}, &block)
     options[:id] ||= id_for_body_tag
-    body_class = "#{classes_for_body_tag_string} #{options[:class]}".strip
+    body_class = "#{classes_for_body_tag} #{options[:class]}".strip
     options[:class] = body_class unless body_class.blank?
     concat content_tag(:body, capture(&block), options)
-  end
-
-  def classes_for_body_tag_string
-    classes_for_body_tag.join(' ')
   end
 
   def content_tag_with_active(*args, &block)
@@ -64,7 +60,9 @@ module YmCore::LayoutHelper
       classes << "controller_#{controller_name}"
       classes << "action_#{action_name}"
       classes << (user_signed_in? ? 'logged_in' : 'logged_out')
-    end
+      classes << "root_slug_#{page.root.slug}" if defined?(page) && page.root && page.root.slug
+      classes << "slug_#{page.slug}" if defined?(page) && page.slug.present?
+    end.join(' ')
   end
 
 end
