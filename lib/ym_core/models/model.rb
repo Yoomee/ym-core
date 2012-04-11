@@ -10,15 +10,5 @@ module YmCore::Model
       end
     end)
   end
-
-  def to_s
-    if respond_to?(:name)
-      name
-    elsif respond_to?(:title)
-      title
-    else
-      super
-    end
-  end
   
 end
