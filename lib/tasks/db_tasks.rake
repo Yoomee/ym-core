@@ -17,4 +17,10 @@ namespace :db do
     puts "Complete"
   end
   
+  desc "Migrate and prepare test database"
+  task :migrate_full => [:migrate, "test:prepare"]
+  
+  desc "Migrate and prepare test database"
+  task :full_migrate => :migrate_full  
+  
 end
