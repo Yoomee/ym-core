@@ -15,6 +15,7 @@ app.configure_with(:rails)
 app.configure_with(:imagemagick)
 app.configure do |c|
   c.datastore.root_path = ::Rails.root.join('data/dragonfly', ::Rails.env).to_s
+  c.allow_fetch_file = true
 end
 
 ### Extend active record ###
@@ -24,13 +25,12 @@ if defined?(ActiveRecord::Base)
   
   class ActiveRecord::Base
     def default_image
-      Dragonfly::App[:images].fetch(default_image_relative_path)
+      Dragonfly::App[:images].fetch_file(default_image_path)
     end
     
     private
-    def default_image_relative_path
+    def default_image_path
       absolute_path = Dir.glob("#{Rails.root}/public/assets/dragonfly/defaults/#{self.class.to_s.underscore}-*").first.to_s
-      absolute_path.sub(Regexp.new(Rails.root.to_s), '../../..')
     end
   end
 end
