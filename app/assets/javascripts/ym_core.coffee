@@ -20,10 +20,16 @@ YmCore =
         new_modal.load(`$(this)`.data('modal-url'))
         new_modal.on 'hidden', () ->
           `$(this)`.remove()
+  Forms:
+    init: () ->
+      $('.formtastic').live "submit", ->
+        submitBtn = $(this).find('.btn.btn-primary')
+        loadingText = (submitBtn.data("loading-text") || 'Saving...')
+        submitBtn.addClass('disabled').val(loadingText)
   init: ->
     YmCore.Tabs.init()
     YmCore.Bootstrap.init()
-      
+    YmCore.Forms.init()
 
 $(document).ready ->
   YmCore.init()
