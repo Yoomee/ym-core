@@ -23,4 +23,11 @@ namespace :db do
   desc "Migrate and prepare test database"
   task :full_migrate => :migrate_full  
   
+  namespace :migrate_full do
+    
+    desc "Redo the last migration and prepare test database"
+    task :redo => ["migrate:redo", "test:prepare"]
+      
+  end
+  
 end
