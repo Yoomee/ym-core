@@ -11,4 +11,8 @@ module YmCore::Model
     end)
   end
   
+  def any_present?(*attrs)
+    attrs.any? {|attr| send(attr).present?}
+  end
+  
 end
