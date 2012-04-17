@@ -1,10 +1,23 @@
 require 'open-uri'
 module YmCore::TwitterHelper
 
+  def auto_link_twitter(tweet)
+    auto_link_twitter_hash_tags(auto_link_twitter_users(auto_link(tweet, :all, :target => "_blank"))).html_safe
+  end
+  
+  def auto_link_twitter_users(tweet)
+    tweet.gsub(/@([\w|\d]+)/, '<a target="_blank" href="http://www.twitter.com/\1">@\1</a>')
+  end
+  
+  def auto_link_twitter_hash_tags(tweet)
+    tweet.gsub(/#([\w|\d]+)/, '<a target="_blank" href="http://twitter.com/search?q=%23\1">#\1</a>')
+  end
+
   # TODO: cache latest_tweets
   def latest_tweets(screen_name, options = {})
     options.reverse_merge!(:count => 1, :include_entities => false, :exclude_replies => true)
     options[:screen_name] = screen_name
+    puts "http://api.twitter.com/1/statuses/user_timeline.json?#{options.to_param}"
     tweets_json = open("http://api.twitter.com/1/statuses/user_timeline.json?#{options.to_param}").read
     tweets_array = ActiveSupport::JSON.decode(tweets_json)
     if tweets_array.is_a?(Array)
@@ -16,7 +29,7 @@ module YmCore::TwitterHelper
   end
 
   def latest_tweet(screen_name, options = {})
-    latest_tweets(screen_name, options.merge(:count => 1)).first
+    latest_tweets(screen_name, options.merge(:count => 2)).first
   end
 
 end
