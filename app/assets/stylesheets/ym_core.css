@@ -124,3 +124,9 @@
   color:#b94a48;
   background: #fff;
 }
+
+/*========== Options panel ==========*/
+
+.options_panel a {
+  margin-right: 10px;
+}
