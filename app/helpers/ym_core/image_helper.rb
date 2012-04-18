@@ -4,6 +4,7 @@ module YmCore::ImageHelper
     def download_image_url_prefix
       if @download_image_url_prefix.nil?
         prod_site_url = Settings.live_site_url
+        raise StandardError, "live_site_url is not set in config/settings.yml" if prod_site_url.blank?
         prod_site_url.chomp!("/")
         if Settings.http_basic && Settings.http_basic.enabled
           http_auth = [Settings.http_basic.username,Settings.http_basic.password].join(':')
