@@ -12,7 +12,7 @@ namespace :db do
     db = Rails.root.to_s.match(/\/data\/(\w+)\//)[1]
     dump_path = "#{Rails.root}/db/#{db}.sql"
     puts "Dumping #{db} database to #{dump_path}"
-    system("mysqldump -uroot -p #{db} > #{dump_path}")
+    system("mysqldump -uroot #{db} > #{dump_path}")
     puts "Compressing #{db}.sql to #{db}.sql.tgz"
     system("cd #{Rails.root}/db && tar -czvf #{db}.sql.tgz #{db}.sql")
     puts "Complete"
