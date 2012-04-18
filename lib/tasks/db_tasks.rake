@@ -9,7 +9,7 @@ namespace :db do
     #   config = config[Rails.env]
     # end
     #db = config["database"]
-    db = Rails.root.match(/\/data\/(\w+)\//)[1]
+    db = Rails.root.to_s.match(/\/data\/(\w+)\//)[1]
     dump_path = "#{Rails.root}/db/#{db}.sql"
     puts "Dumping #{db} database to #{dump_path}"
     system("mysqldump -uroot -p #{db} > #{dump_path}")
