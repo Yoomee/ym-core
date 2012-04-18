@@ -23,7 +23,7 @@ YmCore =
   Forms:
     init: () ->
       $('.formtastic').live "submit", ->
-        submitBtn = $(this).find('.btn.btn-primary')
+        submitBtn = $(this).find("input[type='submit']")
         loadingText = (submitBtn.data("loading-text") || 'Saving...')
         submitBtn.addClass('disabled').val(loadingText)
   init: ->
