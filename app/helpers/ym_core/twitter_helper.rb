@@ -17,10 +17,8 @@ module YmCore::TwitterHelper
   def latest_tweets(screen_name, options = {})
     # NB exclude_replies is applied AFTER count  
     options.reverse_merge!(:count => 1, :include_entities => false, :exclude_replies => true, :trim_user => true)
-  
-    Rails.cache.fetch("latest_tweets_#{screen_name}_#{options.to_query}", :expires_in => 10.minutes) do
+    Rails.cache.fetch("latest_tweets_#{screen_name}_#{options.to_query}", :expires_in => 1.hour) do
       options[:screen_name] = screen_name
-      puts "Fetching tweets"
       tweets_json = open("http://api.twitter.com/1/statuses/user_timeline.json?#{options.to_param}").read
       tweets_array = ActiveSupport::JSON.decode(tweets_json)
       if tweets_array.is_a?(Array)
