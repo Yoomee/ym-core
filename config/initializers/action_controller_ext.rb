@@ -1,5 +1,16 @@
 class ActionController::Base
   
+  def action_name_with_string_inquirer
+    ActiveSupport::StringInquirer.new(action_name_without_string_inquirer)
+  end
+  alias_method_chain :action_name, :string_inquirer
+  
+  
+  def controller_name_with_string_inquirer
+    ActiveSupport::StringInquirer.new(controller_name_without_string_inquirer)
+  end
+  alias_method_chain :controller_name, :string_inquirer
+  
   private
   def flash_error(resource, options = {})
     flash_message(:error, resource, options)
