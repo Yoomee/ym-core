@@ -1,7 +1,7 @@
 #= require jquery-ui-1.8.18.min
 #= require jquery-ui-timepicker-addon
 
-YmCore =
+window.YmCore =
   Tabs:
     init: () ->
       $('.tab-pane').has('input.error').each (idx,pane) => 
@@ -22,15 +22,20 @@ YmCore =
         new_modal.on 'hidden', () ->
           `$(this)`.remove()
   Forms:
+    initDatepickers: () ->
+      $('.datepicker').datepicker(
+        dateFormat: 'dd/mm/yy'
+      )
+      $('.datetime').datetimepicker(
+        dateFormat: 'dd/mm/yy'
+        timeFormat: 'hh:mm'
+      )
     init: () ->
       $('.formtastic').live "submit", ->
         submitBtn = $(this).find("input[type='submit']")
         loadingText = (submitBtn.data("loading-text") || 'Saving...')
         submitBtn.addClass('disabled').val(loadingText)
-      $('.datetime').datetimepicker(
-        dateFormat: 'dd/mm/yy'
-        timeFormat: 'hh:mm'
-      )
+      YmCore.Forms.initDatepickers()
   init: ->
     YmCore.Tabs.init()
     YmCore.Bootstrap.init()
