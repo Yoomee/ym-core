@@ -25,6 +25,7 @@ if defined?(ActiveRecord::Base)
   
   class ActiveRecord::Base
     def default_image
+      return nil if !File.exists?(default_image_path)
       Dragonfly::App[:images].fetch_file(default_image_path)
     end
     
