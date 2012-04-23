@@ -1,4 +1,5 @@
 #= require jquery-ui-1.8.18.min
+#= require jquery-ui-timepicker-addon
 
 YmCore =
   Tabs:
@@ -26,6 +27,10 @@ YmCore =
         submitBtn = $(this).find("input[type='submit']")
         loadingText = (submitBtn.data("loading-text") || 'Saving...')
         submitBtn.addClass('disabled').val(loadingText)
+      $('.datetime').datetimepicker(
+        dateFormat: 'dd/mm/yy'
+        timeFormat: 'hh:mm'
+      )
   init: ->
     YmCore.Tabs.init()
     YmCore.Bootstrap.init()
