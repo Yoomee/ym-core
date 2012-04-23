@@ -31,4 +31,22 @@ namespace :db do
       
   end
   
+  desc "Find missing indexes"
+  task :missing_indexes => :environment do
+    puts "========================================" 
+    puts "| Looking for possible missing indexes |"
+    puts "========================================"
+    tables = ActiveRecord::Base.connection.select_values('show tables')
+    tables.each do |t|
+      columns = ActiveRecord::Base.connection.select_values("describe #{t}")
+      keys = columns.select{|k| k.match(/_(id|type)$/)}
+      indexes = []
+      ActiveRecord::Base.connection.execute("show indexes in #{t}").each {|i| indexes << i[4]}
+      if (missing_indexes = keys - indexes).present?
+        puts "#{t}\n  => #{missing_indexes.sort.join(', ')}"
+      end
+    end
+  end
+  
+  
 end
