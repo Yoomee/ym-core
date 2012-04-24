@@ -4,7 +4,7 @@
 window.YmCore =
   Tabs:
     init: () ->
-      $('.tab-pane').has('input.error').each (idx,pane) => 
+      $('.tab-pane').has('input.error, .control-group.error').each (idx,pane) => 
         link = $(".tabbable .nav a[href='##{$(pane).attr('id')}']")
         link.parent().addClass('error')
         link.tab('show') if idx is 0        

@@ -22,7 +22,6 @@ module YmCore::TabsHelper
     end
   end
       
-
   private  
   def tab_title_and_name(tab)
     tab_name = tab.is_a?(Array) ? tab[0] : tab
