@@ -9,7 +9,7 @@ module YmCore::TextHelper
       summary = truncate_html(summary, :length => options[:length]) if options[:length]
       summary
     else
-      resource.to_s
+      simple_format(resource.to_s)
     end
   end
   
