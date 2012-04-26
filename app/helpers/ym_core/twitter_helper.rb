@@ -31,7 +31,7 @@ module YmCore::TwitterHelper
   end
 
   def latest_tweet(screen_name, options = {})
-    latest_tweets(screen_name, options.merge(:count => 10)).first
+    latest_tweets(screen_name, options.reverse_merge(:count => 10)).first
   end
 
 end

@@ -1,2 +1,7 @@
-Time::DATE_FORMATS[:date] = "%d/%m/%Y"
-Date::DATE_FORMATS[:date] = "%d/%m/%Y"
+{
+  :date => "%d/%m/%Y",
+  :month_day_year_or_not => "%B %o%O"
+}.each do |k,v|
+  Time::DATE_FORMATS[k] = v
+  Date::DATE_FORMATS[k] = v
+end
