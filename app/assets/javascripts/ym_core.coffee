@@ -4,6 +4,11 @@
 window.YmCore =
   Tabs:
     init: () ->
+      # Activate tab from anchor
+      if window.location.hash
+        target_tab_link = $(".nav-tabs li a[href='#{window.location.hash}']").first()
+        target_tab_link.tab('show') if target_tab_link.length
+      # Highlight tabs with errors and activate first tab with errors
       $('.tab-pane').has('input.error, .control-group.error').each (idx,pane) => 
         link = $(".tabbable .nav a[href='##{$(pane).attr('id')}']")
         link.parent().addClass('error')
