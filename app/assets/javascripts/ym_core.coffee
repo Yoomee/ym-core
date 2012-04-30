@@ -15,7 +15,7 @@ window.YmCore =
         link.tab('show') if idx is 0        
   Bootstrap:
     init: () ->
-      $('a[data-toggle]').click (event) ->
+      $('a[data-toggle]').live 'click', event, ->
         event.preventDefault()
       $("[data-toggle='modal'][data-modal-url]").live 'click', -> 
         $('.temp-modal').modal('hide')
