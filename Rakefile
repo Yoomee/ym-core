@@ -35,5 +35,15 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
+namespace :db do
+  
+  desc "Migrate the database and prepare the test database"
+  task :migrate_full => ["db:migrate", "db:test_prepare"]
+  
+  desc "Migrate the database and prepare the test database"
+  task :full_migrate => :migrate_full
+  
+end
 
 task :default => :test
+

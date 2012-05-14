@@ -29,14 +29,20 @@ module YmCore::ImageHelper
     options[:image_url] ? "" : image_tag(image_url, options)
   end
 
+  def dragonfly_image_tag(image, geo_string, options = {})
+    image_tag(image.thumb(geo_string).url, options)
+  end
+
   def image_for(object, geo_string, options = {})
     width, height = width_height_from_geo_string(geo_string)
     options.reverse_merge!(:alt => "#{(truncate(object.to_s || "", :length => (width || 50).to_i / 6))}")
     if object.image
       fetch_image_if_missing(object.image) if Rails.env.development?
-      image_tag(object.image.thumb(geo_string).url, options)
+      dragonfly_image_tag(object.image, geo_string, options)
+      # image_tag(object.image.thumb(geo_string).url, options)
     elsif object.default_image
-      image_tag(object.default_image.thumb(geo_string).url, options)
+      dragonfly_image_tag(object.default_image, geo_string, options)
+      # image_tag(object.default_image.thumb(geo_string).url, options)
     else
       image_placeholder(geo_string, options)
     end
