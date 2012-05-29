@@ -143,3 +143,8 @@
 .options_panel a {
   margin-right: 10px;
 }
+
+/*========== Twitter widget ==========*/
+.twtr-ft a.twtr-join-conv{
+  display:none;
+}
