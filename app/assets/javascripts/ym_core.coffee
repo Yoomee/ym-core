@@ -36,7 +36,7 @@ window.YmCore =
         timeFormat: 'hh:mm'
       )
     init: () ->
-      $('.formtastic').live "submit", ->
+      $(".formtastic:not('.loading-text-disabled')").live "submit", ->
         submitBtn = $(this).find("input[type='submit']")
         loadingText = (submitBtn.data("loading-text") || 'Saving...')
         submitBtn.addClass('disabled').val(loadingText)
