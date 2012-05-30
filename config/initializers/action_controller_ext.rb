@@ -5,11 +5,14 @@ class ActionController::Base
   end
   alias_method_chain :action_name, :string_inquirer
   
-  
   def controller_name_with_string_inquirer
     ActiveSupport::StringInquirer.new(controller_name_without_string_inquirer)
   end
   alias_method_chain :controller_name, :string_inquirer
+  
+  def render_404
+    raise ActionController::RoutingError.new('Not Found')
+  end  
   
   private
   def flash_error(resource, options = {})
