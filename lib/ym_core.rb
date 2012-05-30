@@ -15,3 +15,4 @@ end
 require 'rails_config'
 
 require 'ym_core/models/model'
+require 'ym_core/models/multistep'

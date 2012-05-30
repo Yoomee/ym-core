@@ -12,6 +12,49 @@ module YmCore::TwitterHelper
   def auto_link_twitter_hash_tags(tweet)
     tweet.gsub(/#([\w|\d]+)/, '<a target="_blank" href="http://twitter.com/search?q=%23\1">#\1</a>')
   end
+  
+  def twitter_widget(username,options={})
+    options.reverse_merge!(
+      :count => 5,
+      :width => "'auto'",
+      :height => 300,
+      :scrollbar => true
+    )
+    unless @included_twitter_widget_js
+      content_for :head do
+        javascript_include_tag("http://widgets.twimg.com/j/2/widget.js")
+      end
+      @included_twitter_widget_js = true
+    end
+    widget_js = <<-JAVASCRIPT
+      new TWTR.Widget({
+        version: 2,
+        type: 'profile',
+        rpp: #{options[:count]},
+        interval: 30000,
+        width: #{options[:width]},
+        height: #{options[:height]},
+        theme: {
+          shell: {
+            background: '#999999',
+            color: '#ffffff'
+          },
+          tweets: {
+            background: '#ffffff',
+            color: '#333333',
+            links: '#3B5998'
+          }
+        },
+        features: {
+          scrollbar: #{options[:scrollbar]},
+          loop: false,
+          live: false,
+          behavior: 'all'
+        }
+      }).render().setUser('#{username}').start();
+    JAVASCRIPT
+    javascript_tag(widget_js)
+  end
 
   # TODO: cache latest_tweets
   def latest_tweets(screen_name, options = {})
