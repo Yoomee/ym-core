@@ -6,12 +6,12 @@ module YmCore::TabsHelper
     tab_links = ''
     tab_panes = ''
     tabs.each_with_index do |tab, idx|
-      tab_title, tab_name = tab_title_and_name(tab)
+      tab_name, tab_path, tab_title = tab_name_path_title(tab)
       tab_links << content_tag(:li, :class => "#{'active' if idx.zero?}") do
         link_to(tab_title, "##{tab_name}", :'data-toggle' => 'tab')
       end
       tab_panes << content_tag(:div, :class => "tab-pane#{' active' if idx.zero?}", :id => tab_name) do
-        render("#{controller_name}/tabs/#{tab_name}", locals)
+        render(tab_path, locals)
       end
     end
     content_tag(:div, :class => 'tabbable') do
@@ -23,10 +23,15 @@ module YmCore::TabsHelper
   end
       
   private  
-  def tab_title_and_name(tab)
-    tab_name = tab.is_a?(Array) ? tab[0] : tab
-    tab_title = tab.is_a?(Array) ? tab[1] : tab_name.titleize
-    [tab_title, tab_name]
+  def tab_name_path_title(tab)
+    if tab.is_a?(String)
+      tab_name_path_title([tab,tab.split(/\//).last.titleize])
+    else
+      tab_name_path, tab_title = tab
+      tab_name = tab_name_path.match(/\//) ? tab_name_path.split(/\//).last : tab_name_path
+      tab_path = tab_name_path.match(/\//) ? tab_name_path : "#{controller_name}/tabs/#{tab_name_path}"
+      [tab_name, tab_path, tab_title]
+    end
   end
   
 end
