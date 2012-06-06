@@ -12,7 +12,7 @@ window.YmCore =
       $('.tab-pane').has('input.error, .control-group.error').each (idx,pane) => 
         link = $(".tabbable .nav a[href='##{$(pane).attr('id')}']")
         link.parent().addClass('error')
-        link.tab('show') if idx is 0        
+        link.tab('show') if idx is 0
   Bootstrap:
     init: () ->
       # $('a[data-toggle]').live 'click', event, ->
@@ -41,10 +41,28 @@ window.YmCore =
         loadingText = (submitBtn.data("loading-text") || 'Saving...')
         submitBtn.addClass('disabled').val(loadingText)
       YmCore.Forms.initDatepickers()
+  Modals:
+    initAutoModal: () ->
+      if res = window.location.search.match(/modal=(\w+)/)
+        if $("##{res[1]}").length
+          $("##{res[1]}").modal('show')
+          search_params = window.location.search.replace('?', '').split('&')
+          search_params.splice($.inArray('modal=welcome', search_params), 1)
+          if search_params.length > 0
+            search_params = "?#{search_params.join('&')}"
+          else
+            search_params = ""
+          new_href = "#{window.location.origin}#{window.location.pathname}#{search_params}"
+          if history.pushState != undefined    
+            history.pushState 
+              path: this.path,
+              '',
+              new_href      
   init: ->
     YmCore.Tabs.init()
     YmCore.Bootstrap.init()
     YmCore.Forms.init()
+    YmCore.Modals.initAutoModal()
 
 $(document).ready ->
   YmCore.init()
