@@ -7,6 +7,11 @@ module YmCore::Multistep
   def current_step
     @current_step || steps.first
   end
+  
+  def current_step_gte(step_name)
+    return nil if !steps.include?(current_step) || !steps.include?(step_name)
+    steps.index(current_step) >= steps.index(step_name)
+  end
 
   def steps
     %w{step1 step2}
