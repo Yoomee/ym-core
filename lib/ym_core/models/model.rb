@@ -33,6 +33,10 @@ module YmCore::Model
     end
     alias_method :date_accessor, :date_accessors
   end
+
+  def all_present?(*attrs)
+    attrs.all? {|attr| send(attr).present?}
+  end
   
   def any_present?(*attrs)
     attrs.any? {|attr| send(attr).present?}
