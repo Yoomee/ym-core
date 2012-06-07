@@ -25,7 +25,8 @@ module YmCore::ImageHelper
 
   def image_placeholder(geo_string, options = {})
     width, height = width_height_from_geo_string(geo_string)
-    image_url = "http://placehold.it/#{[width,height].compact.join('x')}"
+    text_param = "&text=#{CGI.escape(options[:text])}" if options[:text].present?
+    image_url = "http://placehold.it/#{[width,height].compact.join('x')}#{text_param}"
     options[:image_url] ? "" : image_tag(image_url, options)
   end
 
@@ -44,6 +45,7 @@ module YmCore::ImageHelper
       dragonfly_image_tag(object.default_image, geo_string, options)
       # image_tag(object.default_image.thumb(geo_string).url, options)
     else
+      options[:text] = options.delete(:placeholder_text)
       image_placeholder(geo_string, options)
     end
   end
