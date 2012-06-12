@@ -14,6 +14,14 @@ class ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end  
   
+  def return_or_redirect_to(*args)
+    if params[:return_to]
+      redirect_to(params[:return_to])
+    else
+      redirect_to(*args)
+    end
+  end
+  
   private
   def flash_error(resource, options = {})
     flash_message(:error, resource, options)
