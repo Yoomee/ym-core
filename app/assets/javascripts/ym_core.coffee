@@ -35,6 +35,10 @@ window.YmCore =
         dateFormat: 'dd/mm/yy'
         timeFormat: 'hh:mm'
       )
+      $('.timepicker').timepicker({
+        timeFormat: 'hh:mm',
+        stepMinute: 5
+      })
     init: () ->
       $(".formtastic:not('.loading-text-disabled')").live "submit", ->
         submitBtn = $(this).find("input[type='submit']")
