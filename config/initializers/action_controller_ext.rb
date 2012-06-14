@@ -1,4 +1,6 @@
 class ActionController::Base
+
+  helper_method :current_path
   
   def action_name_with_string_inquirer
     ActiveSupport::StringInquirer.new(action_name_without_string_inquirer)
@@ -20,6 +22,12 @@ class ActionController::Base
     else
       redirect_to(*args)
     end
+  end
+  
+  def current_path
+    out = request.path.dup
+    query_string = request.query_string
+    query_string.present? ?  "#{out}?#{query_string}" : out
   end
   
   private
