@@ -31,7 +31,7 @@ if defined?(ActiveRecord::Base)
     
     private
     def default_image_path
-      absolute_path = Dir.glob("#{Rails.root}/public/assets/dragonfly/defaults/#{self.class.to_s.underscore}-*").first.to_s
+      absolute_path = Dir.glob("#{Rails.root}/public/dragonfly/defaults/#{self.class.to_s.underscore}.*").first.to_s
     end
   end
 end
