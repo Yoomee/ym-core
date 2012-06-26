@@ -30,6 +30,10 @@ class ActionController::Base
     query_string.present? ?  "#{out}?#{query_string}" : out
   end
   
+  def current_path?(path)
+    current_path == path
+  end 
+  
   private
   def flash_error(resource, options = {})
     flash_message(:error, resource, options)
