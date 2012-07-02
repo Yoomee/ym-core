@@ -1,7 +1,7 @@
 module YmCore::UrlHelper
   
-  def back_link
-    link_to('Back',:back)
+  def back_link(text="Back", html_options = {})
+    link_to(text, :back, html_options)
   end
   
   def externalize_url(url)
