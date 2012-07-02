@@ -91,7 +91,8 @@
   -o-transition: border linear 0.2s, box-shadow linear 0.2s;
   transition: border linear 0.2s, box-shadow linear 0.2s;  
 }
-.fake-textarea input, 
+.fake-textarea input,
+.fake-textarea .controls input,
 .fake-textarea textarea {
   overflow: auto;
   padding: 0;
@@ -99,7 +100,8 @@
   padding: 0;
   width: 100%;
 }
-.fake-textarea input, 
+.fake-textarea input,
+.fake-textarea .controls input,
 .fake-textarea textarea, 
 .fake-textarea input:focus,
 .fake-textarea textarea:focus,
