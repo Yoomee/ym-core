@@ -12,6 +12,18 @@
 .no-padding {
   padding: 0;
 }
+.m-0 { margin:  0px; }
+.m-1 { margin: 10px; }
+.m-2 { margin: 20px; }
+.m-3 { margin: 30px; }
+.mh-0 { margin-left: 0px; margin-right: 0px; }
+.mh-1 { margin-left: 10px; margin-right: 10px; }
+.mh-2 { margin-left: 20px; margin-right: 20px; }
+.mh-3 { margin-left: 30px; margin-right: 30px; }
+.mv-0 { margin-top: 0px; margin-bottom: 0px; }
+.mv-1 { margin-top: 10px; margin-bottom: 10px; }
+.mv-2 { margin-top: 20px; margin-bottom: 20px; }
+.mv-3 { margin-top: 30px; margin-bottom: 30px; }
 .mb-0 { margin-bottom:  0px; }
 .mb-1 { margin-bottom: 10px; }
 .mb-2 { margin-bottom: 20px; }
@@ -79,7 +91,8 @@
   -o-transition: border linear 0.2s, box-shadow linear 0.2s;
   transition: border linear 0.2s, box-shadow linear 0.2s;  
 }
-.fake-textarea input, 
+.fake-textarea input,
+.fake-textarea .controls input,
 .fake-textarea textarea {
   overflow: auto;
   padding: 0;
@@ -87,7 +100,8 @@
   padding: 0;
   width: 100%;
 }
-.fake-textarea input, 
+.fake-textarea input,
+.fake-textarea .controls input,
 .fake-textarea textarea, 
 .fake-textarea input:focus,
 .fake-textarea textarea:focus,
