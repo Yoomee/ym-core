@@ -1,6 +1,6 @@
 class PostcodeValidator < ActiveModel::EachValidator
   def validate_each(record,attribute,value)
-    record.errors[attribute] << "is not a valid postcode" unless value.upcase!.to_s =~ PostcodeValidator::POSTCODE_FORMAT
+    record.errors[attribute] << "is not a valid postcode" unless (value.to_s.upcase! || value.to_s) =~ PostcodeValidator::POSTCODE_FORMAT
   end
 end
 
