@@ -4,4 +4,4 @@ class PostcodeValidator < ActiveModel::EachValidator
   end
 end
 
-PostcodeValidator::POSTCODE_FORMAT = /\A[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][A-Z-[CIKMOV]]{2}\z/
+PostcodeValidator::POSTCODE_FORMAT = /^([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]? {1,2}[0-9][ABD-HJLN-UW-Z]{2}|GIR 0AA)$/i
