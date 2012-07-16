@@ -47,8 +47,8 @@ describe YmCore::TextHelper do
         @resource.stub(:text => nil)
       end
       
-      it "returns resource to_s" do
-        summarize(@resource).should == @resource.to_s
+      it "returns resource to_s simple formatted" do
+        summarize(@resource).should == simple_format(@resource.to_s)
       end
       
     end
