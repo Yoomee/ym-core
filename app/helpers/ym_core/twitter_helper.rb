@@ -56,7 +56,6 @@ module YmCore::TwitterHelper
     javascript_tag(widget_js)
   end
 
-  # TODO: cache latest_tweets
   def latest_tweets(screen_name, options = {})
     # NB exclude_replies is applied AFTER count  
     options.reverse_merge!(:count => 1, :include_entities => false, :exclude_replies => true, :trim_user => true)
@@ -65,7 +64,7 @@ module YmCore::TwitterHelper
       tweets_json = open("http://api.twitter.com/1/statuses/user_timeline.json?#{options.to_param}").read
       tweets_array = ActiveSupport::JSON.decode(tweets_json)
       if tweets_array.is_a?(Array)
-        tweets_array.collect {|t| Struct::Tweet.new(t["text"], Time.parse(t["created_at"]), t["user"]["screen_name"], t["id"])}
+        tweets_array.collect {|t| Struct::Tweet.new(t["text"], Time.parse(t["created_at"]), t["user"]["screen_name"], t["id"], t["user"]["profile_image_url"])}
       else
         Rails.logger.info("FAILED to fetch_latest_tweets_for #{screen_name}: Twitter error: #{tweets_array["error"]}")
         []      
@@ -79,4 +78,4 @@ module YmCore::TwitterHelper
 
 end
 
-Struct.new("Tweet", :text, :created_at, :screen_name, :id) unless Struct.const_defined?(:Tweet)
+Struct.new("Tweet", :text, :created_at, :screen_name, :id, :image_url) unless Struct.const_defined?(:Tweet)
