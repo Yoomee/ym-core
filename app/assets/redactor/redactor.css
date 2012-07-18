@@ -1,3 +1,5 @@
 /*
   *= require ./redactor/css/redactor
 */
+
+body .redactor_toolbar li a.redactor_btn_media span		 		  { background-position: -225px; }

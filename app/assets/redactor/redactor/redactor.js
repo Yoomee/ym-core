@@ -3025,6 +3025,56 @@ var RLANG = {
 			return parseInt(str.replace('px',''), 10);
 		}
 
+    // YOOMEE ADDITIONS
+  	// INSERT MEDIA
+    ,
+  	showMedia: function()
+  	{
+  		if ($.browser.msie)
+  		{
+  			this.markerIE();
+  		}
+
+  		this.modalInit(RLANG.media, 'media', 600, $.proxy(function()
+  			{
+  				$('#redactor_insert_media_btn').click($.proxy(this.insertMedia, this));
+  			}, this),
+
+  			function()
+  			{
+  				$('#redactor_insert_media_url_input').focus();
+          $('#redactor_insert_media_url_input').keyup(function(){
+            $('#redactor_insert_media_html_area').val(EmbeddableMedia.embedCode($('#redactor_insert_media_url_input').val()));
+          });
+  			}
+  		);
+  	},
+    insertMedia: function()
+    {
+      var data = $('#redactor_insert_media_html_area').val();
+
+      if (data == "") {
+        data = EmbeddableMedia.embedCode($('#redactor_insert_media_url_input').val());
+        $('#redactor_insert_media_html_area').val(data);
+      }
+
+      data = this.stripTags(data);
+
+      if ($.browser.msie)
+      {
+        $(this.doc.getElementById('span' + this.spanid)).after(data).remove();
+        this.syncCode();
+      }
+      else
+      {
+        this.execCommand('inserthtml', data);
+      }
+
+      this.modalClose();
+      if (this.opts.autoresize === true) this.setAutoSize(false);
+    }
+
+
 	};
 	
 	
