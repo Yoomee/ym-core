@@ -18,11 +18,19 @@ module YmCore::Multistep
   end
 
   def next_step
-    self.current_step = steps[steps.index(current_step)+1]
+    steps[steps.index(current_step)+1]
+  end
+  
+  def next_step!
+    self.current_step = next_step
   end
 
   def previous_step
-    self.current_step = steps[steps.index(current_step)-1]
+    steps[steps.index(current_step)-1]
+  end
+  
+  def previous_step!
+    self.current_step = previous_step
   end
 
   def first_step?
