@@ -25,6 +25,8 @@ window.Redactor=
   init: ->
     $('textarea.redactor').redactor
       path:'/assets/redactor',
+      imageUpload: '/redactor_uploads',
+      imageGetJson: '/redactor_uploads',
       convertDivs: false,
       buttons: [
         'bold',
@@ -35,6 +37,7 @@ window.Redactor=
         'orderedlist',
         '|',
         'link',
+        'image'
         'media',
         'html',
         'fullscreen'
