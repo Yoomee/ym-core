@@ -1,8 +1,0 @@
-%h2=title 'Super'
-=form_tag '/super/morph', :class => 'form-inline' do
-  %label Log in as
-  =select_tag "user_id", grouped_options_for_select(User.order("first_name").group_by(&:role).collect{|role,users| [role.to_s.titleize,users.collect{|u|[u.to_s,u.id]}]}.sort_by(&:first))
-  =submit_tag "Go", :class => 'btn btn-primary'
-  
-  
-  
