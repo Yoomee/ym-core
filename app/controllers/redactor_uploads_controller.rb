@@ -1,6 +1,7 @@
 class RedactorUploadsController < ApplicationController
   
   load_and_authorize_resource if respond_to?(:load_and_authorize_resource)
+  skip_before_filter :verify_authenticity_token, :only => :create
   
   def create
     @redactor_upload = RedactorUpload.new(:file => params[:file], :file_type => params[:file_type])
@@ -9,7 +10,8 @@ class RedactorUploadsController < ApplicationController
     else
       filelink = ActionController::Base.helpers.asset_path('redactor_image_upload_error.png')
     end
-    render :json => {:filelink => filelink, :filename => @redactor_upload.file.name}
+    # Render as text, not json, to prevent response being wrapped in <pre> tag
+    render :text => {:filelink => filelink, :filename => @redactor_upload.file.name}.to_json
   end
   
   def index
@@ -19,5 +21,3 @@ class RedactorUploadsController < ApplicationController
   end
   
 end
-
-
