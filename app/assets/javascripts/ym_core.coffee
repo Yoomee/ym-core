@@ -47,6 +47,7 @@ window.YmCore =
       YmCore.Forms.initDatepickers()
   Modals:
     initAutoModal: () ->
+      $('#flash-modal').modal('show')
       if res = window.location.search.match(/modal=(\w+)/)
         if $("##{res[1]}").length
           $("##{res[1]}").modal('show')
