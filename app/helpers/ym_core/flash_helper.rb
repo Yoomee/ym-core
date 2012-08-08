@@ -5,7 +5,7 @@ module YmCore::FlashHelper
       if key == :modal
         render_modal(val)
       else
-        content_tag(:div, dismiss_link('x','alert') + val, :class => alert_class(key))
+        content_tag(:div, dismiss_link('x','alert') + val.html_safe, :class => alert_class(key))
       end
     end.join.html_safe
   end
