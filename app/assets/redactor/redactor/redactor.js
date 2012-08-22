@@ -1037,6 +1037,7 @@ var RLANG = {
 				{
 					this.$editor.linkify();
 				}
+        
 			}
 			else 
 			{
@@ -1267,6 +1268,13 @@ var RLANG = {
 		   	html = html.replace(/<\/(.*?)>\s+\n+<\/p>/gi, "</$1>");	
 			html = html.replace(/<p style="(.*?)">(\s)?<\/p>/gi, '');	   	
 			html = html.replace(/<p style="(.*?)"><\/p>/gi, '');			
+      
+  		// convert div to p
+  		if (this.opts.convertDivs)
+  		{
+  			html = html.replace(/<div(.*?)>([\w\W]*?)<\/div>/gi, '<p>$2</p>');
+  		}
+      
 		
 		   	// remove google docs marker
 		 	html = html.replace(/<b\sid="internal-source-marker(.*?)">([\w\W]*?)<\/b>/gi, "$2");	

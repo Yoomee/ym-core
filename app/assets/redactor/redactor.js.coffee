@@ -28,7 +28,9 @@ window.Redactor=
       imageUpload: '/redactor_uploads?file_type=image',
       imageGetJson: '/redactor_uploads',
       fileUpload: '/redactor_uploads?file_type=file',
-      convertDivs: false,
+      removeClasses: true,
+      removeStyles: true,
+      convertDivs: true,
       buttons: [
         'bold',
         'italic',
