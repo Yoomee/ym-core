@@ -7,7 +7,7 @@ require 'decent_exposure'
 require 'formtastic'
 require 'dragonfly'
 require 'rails_rinku'
-require 'truncate_html'
+require 'html_truncator'
 
 module YmCore
 end

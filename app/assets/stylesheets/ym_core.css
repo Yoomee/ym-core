@@ -145,3 +145,10 @@
 .twtr-ft a.twtr-join-conv{
   display:none;
 }
+
+
+/*========== Read more truncate ==========*/
+
+.read-more-wrapper .read-more-full {
+  display: none;
+}

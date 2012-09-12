@@ -6,7 +6,7 @@ module YmCore::TextHelper
       simple_format(summary)
     elsif resource.respond_to?(:text) && resource.text.present?
       summary = sanitize(resource.text, :tags => %w{p br})
-      summary = truncate_html(summary, :length => options[:length]) if options[:length]
+      summary = HTML_Truncator.truncate(summary, options[:length], :length_in_chars => true) if options[:length]
       summary
     else
       simple_format(resource.to_s)

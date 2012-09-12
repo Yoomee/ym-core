@@ -62,12 +62,21 @@ window.YmCore =
             history.pushState 
               path: this.path,
               '',
-              new_href      
+              new_href
+  ReadMoreTruncate:
+    init: () ->
+      $('.read-more-link').live 'click', (event) ->
+        event.preventDefault()
+        wrapper = $(this).parents('.read-more-wrapper:first')
+        wrapper.children('.read-more-trunc').hide()
+        wrapper.children('.read-more-full').show()
+      
   init: ->
     YmCore.Tabs.init()
     YmCore.Bootstrap.init()
     YmCore.Forms.init()
     YmCore.Modals.initAutoModal()
+    YmCore.ReadMoreTruncate.init()
 
 $(document).ready ->
   YmCore.init()
