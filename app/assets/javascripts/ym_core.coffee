@@ -2,6 +2,18 @@
 #= require jquery-ui-timepicker-addon
 
 window.YmCore =
+  addDefaults: (options, defaultOptions) ->
+    if typeof(options) == 'object'
+      $.extend(defaultOptions, options)
+    else
+      defaultOptions
+  scrollTo: (elem, options) ->
+    elem = $(elem)
+    if elem.length
+      options = YmCore.addDefaults(options, {offset: 0, duration: 750})
+      $('html, body').stop().animate
+        scrollTop: (elem.position().top - options.offset)
+      , options.duration
   Tabs:
     init: () ->
       # Activate tab from anchor
