@@ -16,3 +16,5 @@ require 'rails_config'
 
 require 'ym_core/models/model'
 require 'ym_core/models/multistep'
+require 'ym_core/generators/ability'
+require 'ym_core/generators/migration'
