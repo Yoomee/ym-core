@@ -41,10 +41,11 @@ module YmCore::ImageHelper
     options = args.extract_options!
     object, geo_string = args[0], args[1]
     width, height = width_height_from_geo_string(geo_string)
-    options.reverse_merge!(:alt => "#{(truncate(object.to_s || "", :length => (width || 50).to_i / 6))}")
-    if object.image
-      fetch_image_if_missing(object.image) if Rails.env.development?
-      dragonfly_image_tag(object.image, geo_string, options)
+    options.reverse_merge!(:alt => "#{(truncate(object.to_s || "", :length => (width || 50).to_i / 6))}", :method => 'image')
+    image = object.send(options[:method])
+    if image
+      fetch_image_if_missing(image) if Rails.env.development?
+      dragonfly_image_tag(image, geo_string, options)
     elsif object.default_image
       dragonfly_image_tag(object.default_image, geo_string, options)
     else
