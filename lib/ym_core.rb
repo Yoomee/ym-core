@@ -14,7 +14,9 @@ end
 
 require 'rails_config'
 
-require 'ym_core/models/model'
-require 'ym_core/models/multistep'
 require 'ym_core/generators/ability'
 require 'ym_core/generators/migration'
+require 'ym_core/model'
+require 'ym_core/model/amount_accessor'
+require 'ym_core/model/date_accessor'
+require 'ym_core/multistep'
