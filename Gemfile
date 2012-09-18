@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'formtastic-bootstrap', :git => "git://github.com/cgunther/formtastic-bootstrap.git", :branch => "bootstrap-2"
+# gem 'formtastic-bootstrap', :git => "git://github.com/cgunther/formtastic-bootstrap.git", :branch => "bootstrap-2"
 
 # Declare your gem's dependencies in ym_core.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
