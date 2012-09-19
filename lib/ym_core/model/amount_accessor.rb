@@ -22,11 +22,22 @@ module YmCore::Model::AmountAccessor
     
     def amount_reader(attr)
       attr = attr.to_s
+      define_method("#{attr}_before_typecast") do
+        if instance_variable_defined?("@#{attr}")
+          instance_variable_get("@#{attr}")
+        else
+          val = send("#{attr}_in_pence")
+          val.try(:is_number?) ? YmCore::Model::AmountAccessor::Float.new((val.to_f / 100).round(2)) : val
+        end
+      end
       define_method(attr) do
-        return instance_variable_get("@#{attr}") if instance_variable_defined?("@#{attr}")
-        pence_val = send("#{attr}_in_pence") 
-        return pence_val if !pence_val.try(:is_number?)
-        YmCore::Model::AmountAccessor::Float.new((pence_val.to_f / 100).round(2))
+        if instance_variable_defined?("@#{attr}")
+          val = instance_variable_get("@#{attr}")
+          YmCore::Model::AmountAccessor::Float.new(val.to_f.round(2))
+        else
+          val = send("#{attr}_in_pence")
+          YmCore::Model::AmountAccessor::Float.new((val.to_f / 100).round(2))
+        end
       end
     end
 
