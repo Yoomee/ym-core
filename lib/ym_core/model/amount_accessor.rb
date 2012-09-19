@@ -17,12 +17,12 @@ module YmCore::Model::AmountAccessor
     
     private
     def amount_validation(attr)
-      self.validates(attr, "#{attr}_in_pence", :numericality => { :only_integer => true, :greater_than => 0, :allow_blank => true })
+      self.validates(attr, "#{attr}_in_pence", :numericality => {:greater_than => 0, :allow_blank => true})
     end
     
     def amount_reader(attr)
       attr = attr.to_s
-      define_method("#{attr}_before_typecast") do
+      define_method("#{attr}_before_type_cast") do
         if instance_variable_defined?("@#{attr}")
           instance_variable_get("@#{attr}")
         else
@@ -33,10 +33,10 @@ module YmCore::Model::AmountAccessor
       define_method(attr) do
         if instance_variable_defined?("@#{attr}")
           val = instance_variable_get("@#{attr}")
-          YmCore::Model::AmountAccessor::Float.new(val.to_f.round(2))
+          val.nil? ? val : YmCore::Model::AmountAccessor::Float.new(val.to_f.round(2))
         else
           val = send("#{attr}_in_pence")
-          YmCore::Model::AmountAccessor::Float.new((val.to_f / 100).round(2))
+          val.nil? ? val : YmCore::Model::AmountAccessor::Float.new((val.to_f / 100).round(2))
         end
       end
     end
@@ -44,7 +44,7 @@ module YmCore::Model::AmountAccessor
     def amount_writer(attr)
       attr = attr.to_s
       define_method("#{attr}=") do |val|
-        instance_variable_set("@#{attr}", val)
+        instance_variable_set("@#{attr}", val.presence)
         val = (val.to_f * 100).round(2).to_i if val.try(:is_number?)
         self.send("#{attr}_in_pence=", val)
       end
