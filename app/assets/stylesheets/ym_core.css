@@ -136,6 +136,22 @@
   background: #fff;
 }
 
+/*========== Formtastic ==========*/
+
+form.formtastic .control-group.image {
+ clear: both;
+ float: left;
+}
+form.formtastic .control-group.image img {
+  float: left;
+  clear: left;
+  margin-right: 10px;
+}
+form.formtastic .control-group.image .image-inputs {
+  float: left;
+  clear: right;
+}
+
 /*========== Options panel ==========*/
 
 .options_panel a {

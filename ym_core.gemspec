@@ -37,5 +37,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "capybara"
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "geminabox"
+  s.add_development_dependency 'rb-fsevent', '~> 0.9.1'
 
 end
