@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'haml'
   s.add_dependency 'jquery-rails'
   s.add_dependency "yoomee-decent_exposure"
-  s.add_dependency "formtastic", "~> 2.0.2"  
+  s.add_dependency "formtastic", "~> 2.0.2"
   s.add_dependency "dragonfly", "~> 0.9.10"
   s.add_dependency "rails_config", "~> 0.2.6"
   s.add_dependency "will_paginate", "~> 3.0.3"
@@ -29,13 +29,14 @@ Gem::Specification.new do |s|
   s.add_dependency "html_truncator", "~> 0.2"
 
   # for testing
-  s.add_development_dependency "mysql2"    
+  s.add_development_dependency "mysql2"
   s.add_development_dependency "rspec-rails"
-  s.add_development_dependency "factory_girl_rails"  
+  s.add_development_dependency "factory_girl_rails"
   s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency "capybara"
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "geminabox"
   s.add_development_dependency 'rb-fsevent', '~> 0.9.1'
+  s.add_development_dependency 'ym_tools', '~> 0.1.1'
 
 end
