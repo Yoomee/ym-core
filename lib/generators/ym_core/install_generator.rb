@@ -7,7 +7,9 @@ module YmCore
       desc "Installs YmCore."
 
       def manifest
-        try_migration_template "migrations/create_redactor_uploads.rb", "db/migrate/create_redactor_uploads"        
+        copy_file "views/admin/index.html.haml", "app/views/admin/index.html.haml"
+        # Migrations must go last
+        try_migration_template "migrations/create_redactor_uploads.rb", "db/migrate/create_redactor_uploads"
       end
       
     end
