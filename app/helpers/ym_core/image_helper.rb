@@ -1,22 +1,5 @@
 module YmCore::ImageHelper
 
-  class << self
-    def download_image_url_prefix
-      if @download_image_url_prefix.nil?
-        prod_site_url = Settings.live_site_url
-        raise StandardError, "live_site_url is not set in config/settings.yml" if prod_site_url.blank?
-        prod_site_url.chomp!("/")
-        if Settings.http_basic && Settings.http_basic.enabled
-          http_auth = [Settings.http_basic.username,Settings.http_basic.password].join(':')
-          prod_site_url.sub!(%r{^http://}, "http://#{http_auth}@") if http_auth != ':'
-        end
-        @download_image_url_prefix = prod_site_url
-      else
-        @download_image_url_prefix
-      end
-    end
-  end
-
   # TODO: get this working
   # def holding_image(geo_string, options = {})
   #   filename = File.dirname(__FILE__) + "/../../assets/images/holding.png"
@@ -44,7 +27,7 @@ module YmCore::ImageHelper
     options.reverse_merge!(:alt => "#{(truncate(object.to_s || "", :length => (width || 50).to_i / 6))}", :method => 'image')
     image = object.send(options[:method])
     if image
-      fetch_image_if_missing(image) if Rails.env.development?
+      YmCore::ImageDownloader::download_image_if_missing(image) if Rails.env.development?
       dragonfly_image_tag(image, geo_string, options)
     elsif object.default_image
       dragonfly_image_tag(object.default_image, geo_string, options)
@@ -57,29 +40,6 @@ module YmCore::ImageHelper
   def width_height_from_geo_string(geo_string)
     res = geo_string.blank? ? nil : geo_string.match(/(\d+)x?(\d*)/)
     res ? [(res[1].blank? ? nil : res[1].to_i), (res[2].blank? ? nil : res[2].to_i)] : [nil, nil]
-  end
-
-  private
-  def fetch_image_if_missing(image)
-    begin
-      image.path
-    rescue Dragonfly::DataStorage::DataNotFound => e
-      image_url = "#{YmCore::ImageHelper.download_image_url_prefix}#{image.url}"
-      image_path = e.message.match(/\s([^\s]*)$/).try(:[],1)
-      if !image_url.blank? && !image_path.blank?
-        growl
-        system("mkdir -p #{image_path.sub(/[^\/]*$/, "")}")
-        puts "Downloading image: #{image_url}."
-        system("curl -sf #{image_url} -o #{image_path}")
-      end
-    end
-  end
-  
-  def growl
-    if !@growled
-      system("growlnotify -t 'Script/Server' -m 'Downloading missing image(s)'")
-      @growled = true
-    end
   end
 
 end

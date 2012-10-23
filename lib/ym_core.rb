@@ -16,6 +16,7 @@ require 'rails_config'
 
 require 'ym_core/generators/ability'
 require 'ym_core/generators/migration'
+require 'ym_core/image_downloader'
 require 'ym_core/model'
 require 'ym_core/model/amount_accessor'
 require 'ym_core/model/date_accessor'
