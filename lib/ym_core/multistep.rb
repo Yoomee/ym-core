@@ -16,6 +16,18 @@ module YmCore::Multistep
   def steps
     %w{step1 step2}
   end
+  
+  def method_missing(method_name, *args)
+    if method_name =~ /^current_step_(\w+)\?$/
+      if steps.include?($1)
+        current_step == $1
+      else
+        super
+      end
+    else
+      super
+    end
+  end
 
   def next_step
     steps[steps.index(current_step)+1]
