@@ -1,6 +1,6 @@
 module YmCore::UrlHelper
   
-  def back_link(text="Back", html_options = {})
+  def back_link(text=t("general.back"), html_options = {})
     link_to(text, :back, html_options)
   end
   
