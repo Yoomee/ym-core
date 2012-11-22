@@ -5,8 +5,9 @@ module YmCore::Model
       array = [*ids_or_records].collect{|i| i.is_a?(Integer) ? i : i.try(:id)}.reject(&:nil?)
       array.empty? ? base.scoped : base.where(["#{base.table_name}.id NOT IN (?)", array])
     end)
-    base.send(:include, YmCore::Model::DateAccessor)
     base.send(:include, YmCore::Model::AmountAccessor)
+    base.send(:include, YmCore::Model::DateAccessor)
+    base.send(:include, YmCore::Model::CountryAccessor)
   end
 
   def all_present?(*attrs)
