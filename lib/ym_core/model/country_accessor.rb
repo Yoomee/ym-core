@@ -12,6 +12,9 @@ module YmCore::Model::CountryAccessor
         define_method(attr) do
           I18n.translate("countries.#{read_attribute("#{attr}_code")}")
         end
+        define_method("#{attr}_changed?") do
+          send("#{attr}_code_changed?")
+        end
       end
     end
 
