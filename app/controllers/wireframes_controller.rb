@@ -1,5 +1,6 @@
 class WireframesController < ApplicationController
-    
+  before_filter :redirect_if_not_logged_in
+  
   def show
     wireframe_path = "wireframes/#{params[:id]}"
     show_layout = true
@@ -23,6 +24,13 @@ class WireframesController < ApplicationController
       </ul>",
       :locals => { :wireframes => wireframes }
      
+  end
+  
+  private
+  def redirect_if_not_logged_in
+    if defined?(current_user) && current_user.nil?
+      redirect_to root_path
+    end
   end
   
 end
