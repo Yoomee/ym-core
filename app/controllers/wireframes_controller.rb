@@ -2,11 +2,12 @@ class WireframesController < ApplicationController
     
   def show
     wireframe_path = "wireframes/#{params[:id]}"
+    show_layout = true
     if template_exists?("#{wireframe_path}_nl")
       wireframe_path = "#{wireframe_path}_nl"
       show_layout = false
     end
-    render :template => wireframe_path, :layout => show_layout || true
+    render :template => wireframe_path, :layout => show_layout
   end
   
   def index
