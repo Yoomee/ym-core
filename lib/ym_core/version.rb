@@ -1,3 +1,3 @@
 module YmCore
-  VERSION = "y"
+  VERSION = "0.1.44"
 end
