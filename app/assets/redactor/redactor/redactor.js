@@ -3034,8 +3034,17 @@ var RLANG = {
 		}
 
     // YOOMEE ADDITIONS
-  	// INSERT MEDIA
     ,
+    // INTRO PARAGRAPH (FOR MENCAP)
+    formatblockIntro: function(args){
+      if ($.browser.msie) {
+				this.doc.execCommand('formatblock', false, '<p>');
+			} else {
+				this.doc.execCommand('formatblock', false, 'p');
+			}
+			$(this.getParentNode()).replaceWith('<p class = \'intro\'>' + $(this.getParentNode()).html() + '</p>');
+    },
+  	// INSERT MEDIA
   	showMedia: function()
   	{
   		if ($.browser.msie)
