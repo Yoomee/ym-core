@@ -27,9 +27,9 @@ window.YmCore =
         link.tab('show') if idx is 0
   Bootstrap:
     init: () ->
-      # $('a[data-toggle]').live 'click', event, ->
+      # $('a[data-toggle]').on 'click', event, ->
       #   event.preventDefault()
-      $("[data-toggle='modal'][data-modal-url]").live 'click', -> 
+      $("[data-toggle='modal'][data-modal-url]").on 'click', -> 
         $('.temp-modal').modal('hide')
         new_modal = $("<div class='modal temp-modal'></div>")
         if (`$(this)`.data('modal-id') != undefined)
@@ -52,7 +52,7 @@ window.YmCore =
         stepMinute: 5
       })
     init: () ->
-      $(".formtastic:not('.loading-text-disabled')").live "submit", ->
+      $(".formtastic:not('.loading-text-disabled')").on "submit", ->
         submitBtn = $(this).find("input[type='submit']")
         loadingText = (submitBtn.data("loading-text") || 'Saving...')
         submitBtn.addClass('disabled').val(loadingText)
@@ -77,7 +77,7 @@ window.YmCore =
               new_href
   ReadMoreTruncate:
     init: () ->
-      $('.read-more-link').live 'click', (event) ->
+      $('.read-more-link').on 'click', (event) ->
         event.preventDefault()
         wrapper = $(this).parents('.read-more-wrapper:first')
         wrapper.children('.read-more-trunc').hide()
