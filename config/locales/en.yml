@@ -4,6 +4,8 @@
 en:
   login: "Login"
   logout: "Logout"
+  general:
+    back: "Back"
   countries:
     AC: "Ascension Island"
     AD: "Andorra"
