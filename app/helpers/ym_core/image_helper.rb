@@ -25,7 +25,7 @@ module YmCore::ImageHelper
     object, geo_string = args[0], args[1]
     width, height = width_height_from_geo_string(geo_string)
     options.reverse_merge!(:alt => "#{(truncate(object.to_s || "", :length => (width || 50).to_i / 6))}", :method => 'image')
-    image = object.send(options[:method])
+    image = object.send(options.delete(:method))
     if image
       YmCore::ImageDownloader::download_image_if_missing(image) if Rails.env.development?
       dragonfly_image_tag(image, geo_string, options)
