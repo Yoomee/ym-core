@@ -1,4 +1,5 @@
-#= require jquery-ui-1.8.23
+#= require jquery-migrate
+#= require jquery.ui.all
 #= require jquery-ui-timepicker-addon
 
 window.YmCore =

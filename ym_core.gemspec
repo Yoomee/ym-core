@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rinku'
   s.add_dependency 'haml'
   s.add_dependency 'jquery-rails'
+  s.add_dependency 'jquery-ui-rails'
   s.add_dependency "yoomee-decent_exposure"
   s.add_dependency "formtastic", "~> 2.0.2"
   s.add_dependency "dragonfly", "~> 0.9.10"

@@ -3,6 +3,7 @@ require 'bootstrap-will_paginate'
 require "ym_core/engine"
 require 'haml'
 require 'jquery-rails'
+require 'jquery-ui-rails'
 require 'decent_exposure'
 require 'formtastic'
 require 'dragonfly'
