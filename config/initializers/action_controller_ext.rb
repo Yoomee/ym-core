@@ -1,4 +1,16 @@
 class ActionController::Base
+  
+  if Rails.env.development?
+    rescue_from Exception, :with => :growl_on_ajax
+  end
+  
+  def growl_on_ajax(exception)
+    if request.xhr?
+      system("growlnotify -t 'Script/Server' -m '#{exception.class}: #{exception.to_s.gsub(/('|`)/, "\'")}'")
+    end
+    raise exception
+    true
+  end
 
   helper_method :current_path
   
