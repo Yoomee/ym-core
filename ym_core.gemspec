@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency "will_paginate", "~> 3.0.3"
   s.add_dependency "bootstrap-will_paginate", "~> 0.0.6"
   s.add_dependency "html_truncator", "~> 0.2"
+  s.add_dependency 'randumb'
 
   # for testing
   s.add_development_dependency "mysql2"

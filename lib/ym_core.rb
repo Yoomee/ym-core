@@ -9,6 +9,7 @@ require 'formtastic'
 require 'dragonfly'
 require 'rails_rinku'
 require 'html_truncator'
+require 'randumb'
 
 module YmCore
 end
