@@ -52,11 +52,22 @@ window.YmCore =
         timeFormat: 'hh:mm',
         stepMinute: 5
       })
-    init: () ->
-      $(".formtastic:not('.loading-text-disabled')").on "submit", ->
-        submitBtn = $(this).find("input[type='submit']")
+    LoadingText:
+      add: (elem) ->
+        submitBtn = elem.find("input[type='submit']")
         loadingText = (submitBtn.data("loading-text") || 'Saving...')
-        submitBtn.addClass('disabled').val(loadingText)
+        submitBtn.addClass('disabled').attr('data-non-loading-text', submitBtn.val()).val(loadingText)
+      remove: (elem) ->
+          submitBtn = elem.find("input[type='submit']")
+          submitBtn.removeClass('disabled').val(submitBtn.data('non-loading-text'))
+      init: () ->
+        $(".formtastic:not('.loading-text-disabled')").on "submit", ->
+          YmCore.Forms.LoadingText.add($(this))
+        unless typeof(ClientSideValidations) == 'undefined'
+          ClientSideValidations.callbacks.form.fail = (element, message, callback) ->
+            YmCore.Forms.LoadingText.remove(element)
+    init: () ->
+      YmCore.Forms.LoadingText.init()
       YmCore.Forms.initDatepickers()
   Modals:
     initAutoModal: () ->
