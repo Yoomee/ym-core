@@ -1,10 +1,11 @@
 module YmCore::GoogleApisHelper
   
-  def google_analytics_js
+  def google_analytics_js(options = {})
     if !(Rails.env =~ /development|test/) && (tracker_code = Settings.google_analytics).present?
       javascript_tag do
         "var _gaq = _gaq || [];
         _gaq.push(['_setAccount', '#{tracker_code}']);
+        #{"_gaq.push(['_setDomainName', '#{options[:domain]}']);" if options[:domain]}
         _gaq.push(['_trackPageview']);
 
         (function() {
