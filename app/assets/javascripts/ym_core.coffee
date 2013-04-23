@@ -1,3 +1,4 @@
+#= require bootstrap
 #= require jquery-migrate
 #= require jquery.ui.all
 #= require jquery-ui-timepicker-addon
