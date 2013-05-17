@@ -1,3 +1,7 @@
+/*========= Override bootstrap variables here ==========*/
+
+@import 'bootstrap';
+
 /*========== Defaults ==========*/
 
 .clear {
@@ -173,5 +177,3 @@ textarea[data-dont-grow='true'] {
 .read-more-wrapper .read-more-full {
   display: none;
 }
-
-@import 'bootstrap';
