@@ -10,6 +10,7 @@ require 'dragonfly'
 require 'rails_rinku'
 require 'html_truncator'
 require 'randumb'
+require 'bootstrap-sass'
 
 module YmCore
 end
