@@ -4,12 +4,13 @@ require "ym_core/engine"
 require 'haml'
 require 'jquery-rails'
 require 'jquery-ui-rails'
-require 'decent_exposure'
 require 'formtastic'
+require 'formtastic-bootstrap'
 require 'dragonfly'
 require 'rails_rinku'
 require 'html_truncator'
 require 'randumb'
+require 'bootstrap-sass'
 
 module YmCore
 end

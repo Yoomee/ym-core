@@ -1,3 +1,7 @@
+/*========= Override bootstrap variables here ==========*/
+
+@import 'custom-bootstrap';
+
 /*========== Defaults ==========*/
 
 .clear {
@@ -133,6 +137,7 @@
 }
 .nav-tabs > li.error.active > a {
   color:#b94a48;
+
   background: #fff;
 }
 
@@ -150,6 +155,9 @@ form.formtastic .control-group.image img {
 form.formtastic .control-group.image .image-inputs {
   float: left;
   clear: right;
+}
+textarea[data-dont-grow='true'] {
+  overflow: hidden;
 }
 
 /*========== Options panel ==========*/
