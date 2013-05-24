@@ -2,6 +2,8 @@
 
 @import 'ym-bootstrap/core';
 
+
+
 /*========== Defaults ==========*/
 
 .clear {
@@ -48,6 +50,9 @@
 .border-bottom {
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
+}
+.btn {
+text-shadow:none;
 }
 .upcase {
   text-transform:uppercase;
