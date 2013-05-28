@@ -1,7 +1,7 @@
 module YmCore::GoogleApisHelper
   
   def google_analytics_js(options = {})
-    if !(Rails.env =~ /development|test/) && (tracker_code = Settings.google_analytics).present?
+    if !(Rails.env =~ /test#{options[:allow_dev] ? '' : '|development'}/) && (tracker_code = Settings.google_analytics).present?
       options.reverse_merge!(:universal => true, :domain => Settings.site_url.sub(/(^https?:\/\/(www\.)?)?/, ''))
       javascript_tag do
         if options[:universal]
@@ -10,7 +10,8 @@ module YmCore::GoogleApisHelper
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-          ga('create', '#{tracker_code}', '#{options[:domain]}');
+          ga('create', '#{tracker_code}', #{options[:allow_dev] ? "{'cookieDomain':'none'}" : "'#{options[:domain]}'"});
+          #{options[:fields].collect{|field, value| "ga('set', '#{field}', String(#{value}));"}.join("\n") if options[:fields]}
           ga('send', 'pageview');".html_safe
         else
           "var _gaq = _gaq || [];
