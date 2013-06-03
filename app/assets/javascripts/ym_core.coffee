@@ -73,9 +73,6 @@ window.YmCore =
           submitBtn = elem.find("input[type='submit']")
           submitBtn.removeClass('disabled').val(submitBtn.data('non-loading-text'))
       init: () ->
-        $ ($) ->
-          textareas_to_auto_grow = $($(textarea) for textarea in $('textarea') when $(textarea).data('dont-grow') != true)
-          textareas_to_auto_grow.autoGrowTextArea()
         $(".formtastic input[type='submit']").on "click", (event) ->
           $(this).attr('data-clicked',true)
         $(".formtastic:not('.loading-text-disabled')").on "submit", ->
@@ -86,6 +83,8 @@ window.YmCore =
     init: () ->
       YmCore.Forms.LoadingText.init()
       YmCore.Forms.initDatepickers()
+      $('textarea:not(.redactor):not([data-dont-grow=true])').autoGrowTextArea()
+      
   Modals:
     initAutoModal: () ->
       $('#flash-modal').modal('show')

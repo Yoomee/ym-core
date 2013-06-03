@@ -161,7 +161,7 @@ form.formtastic .control-group.image .image-inputs {
   float: left;
   clear: right;
 }
-textarea[data-dont-grow='true'] {
+textarea:not([data-dont-grow='true']) {
   overflow: hidden;
 }
 
