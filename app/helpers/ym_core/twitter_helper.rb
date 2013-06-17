@@ -61,7 +61,7 @@ module YmCore::TwitterHelper
     options.reverse_merge!(:count => 1, :include_entities => false, :exclude_replies => true, :trim_user => true)
     Rails.cache.fetch("latest_tweets_#{screen_name}_#{options.to_query}", :expires_in => 1.hour) do
       options[:screen_name] = screen_name
-      tweets_json = open("http://api.twitter.com/1/statuses/user_timeline.json?#{options.to_param}").read
+      tweets_json = open("https://api.twitter.com/1.1/statuses/user_timeline.json?#{options.to_param}", "Authorization" => "Bearer #{Settings.twitter.bearer_token}").read
       tweets_array = ActiveSupport::JSON.decode(tweets_json)
       if tweets_array.is_a?(Array)
         tweets_array.collect {|t| Struct::Tweet.new(t["text"], Time.parse(t["created_at"]), t["user"]["screen_name"], t["id"], t["user"]["profile_image_url"])}
