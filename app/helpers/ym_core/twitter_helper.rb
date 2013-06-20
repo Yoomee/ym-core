@@ -13,47 +13,22 @@ module YmCore::TwitterHelper
     tweet.gsub(/#([\w|\d]+)/, '<a target="_blank" href="http://twitter.com/search?q=%23\1">#\1</a>')
   end
   
-  def twitter_widget(username,options={})
+  def twitter_widget(username, widget_id, options={})
     options.reverse_merge!(
-      :count => 5,
-      :width => "'auto'",
-      :height => 300,
-      :scrollbar => true
+      :class => 'twitter-timeline',
+      :data => {
+        # :chrome => 'nofooter', hides reply box
+        :tweet_limit => 5
+      }
     )
+    options[:data][:'widget-id'] = widget_id
     unless @included_twitter_widget_js
       content_for :head do
-        javascript_include_tag("http://widgets.twimg.com/j/2/widget.js")
+        javascript_tag("!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','twitter-wjs');")
       end
       @included_twitter_widget_js = true
     end
-    widget_js = <<-JAVASCRIPT
-      new TWTR.Widget({
-        version: 2,
-        type: 'profile',
-        rpp: #{options[:count]},
-        interval: 30000,
-        width: #{options[:width]},
-        height: #{options[:height]},
-        theme: {
-          shell: {
-            background: '#999999',
-            color: '#ffffff'
-          },
-          tweets: {
-            background: '#ffffff',
-            color: '#333333',
-            links: '#3B5998'
-          }
-        },
-        features: {
-          scrollbar: #{options[:scrollbar]},
-          loop: false,
-          live: false,
-          behavior: 'all'
-        }
-      }).render().setUser('#{username}').start();
-    JAVASCRIPT
-    javascript_tag(widget_js)
+    link_to("Tweets by @#{username}", "https://twitter.com/#{username}", options)
   end
 
   def latest_tweets(screen_name, options = {})
@@ -61,7 +36,7 @@ module YmCore::TwitterHelper
     options.reverse_merge!(:count => 1, :include_entities => false, :exclude_replies => true, :trim_user => true)
     Rails.cache.fetch("latest_tweets_#{screen_name}_#{options.to_query}", :expires_in => 1.hour) do
       options[:screen_name] = screen_name
-      tweets_json = open("http://api.twitter.com/1/statuses/user_timeline.json?#{options.to_param}").read
+      tweets_json = open("https://api.twitter.com/1.1/statuses/user_timeline.json?#{options.to_param}", "Authorization" => "Bearer #{Settings.twitter.bearer_token}").read
       tweets_array = ActiveSupport::JSON.decode(tweets_json)
       if tweets_array.is_a?(Array)
         tweets_array.collect {|t| Struct::Tweet.new(t["text"], Time.parse(t["created_at"]), t["user"]["screen_name"], t["id"], t["user"]["profile_image_url"])}
