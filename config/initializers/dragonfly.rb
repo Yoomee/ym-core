@@ -16,6 +16,7 @@ app.configure_with(:imagemagick)
 app.configure do |c|
   c.datastore.root_path = ::Rails.root.join('data/dragonfly', ::Rails.env).to_s
   c.allow_fetch_file = true
+  c.allow_fetch_url = true
 end
 
 ### Extend active record ###
