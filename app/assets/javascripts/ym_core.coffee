@@ -92,7 +92,7 @@ window.YmCore =
         if $("##{res[1]}").length
           $("##{res[1]}").modal('show')
           search_params = window.location.search.replace('?', '').split('&')
-          search_params.splice($.inArray('modal=welcome', search_params), 1)
+          search_params.splice($.inArray("modal=#{res[1]}", search_params), 1)
           if search_params.length > 0
             search_params = "?#{search_params.join('&')}"
           else
