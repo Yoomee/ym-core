@@ -60,8 +60,8 @@ module YmCore::LayoutHelper
       classes << "controller_#{controller_name}"
       classes << "action_#{action_name}"
       classes << (current_user? ? 'logged_in' : 'logged_out')
-      classes << "root_slug_#{@page.root_slug}" if defined?(@page) && @page.root && @page.root_slug.present?
-      classes << "slug_#{@page.slug}" if defined?(@page) && @page.slug.present?
+      classes << "root_slug_#{@page.root_slug}" if defined?(@page) && @page && @page.root && @page.root_slug.present?
+      classes << "slug_#{@page.slug}" if defined?(@page) && @page && @page.slug.present?
     end.join(' ')
   end
 

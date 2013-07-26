@@ -29,7 +29,7 @@ class ActionController::Base
   end  
   
   def return_or_redirect_to(*args)
-    if params[:return_to]
+    if params[:return_to].present?
       redirect_to(params[:return_to])
     else
       redirect_to(*args)
