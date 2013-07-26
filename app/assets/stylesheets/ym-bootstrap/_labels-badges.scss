@@ -51,14 +51,14 @@ a {
 // Only give background-color difference to links (and to simplify, we don't qualifty with `a` but [href] attribute)
 @each $item in label, badge {
   // Important (red)
-  .#{$item}-important         { background-color: $errorText; }
-  .#{$item}-important[href]   { background-color: $errorText; }
+  .#{$item}-important         { background-color: $errorBackground; }
+  .#{$item}-important[href]   { background-color: $errorBackground; }
   // Warnings (orange)
   .#{$item}-warning           { background-color: $orange; }
   .#{$item}-warning[href]     { background-color: $orange, 10%; }
   // Success (green)
-  .#{$item}-success           { background-color: $successText; }
-  .#{$item}-success[href]     { background-color: $successText; }
+  .#{$item}-success           { background-color: $green; }
+  .#{$item}-success[href]     { background-color: $green; }
   // Info (turquoise)
   .#{$item}-info              { background-color: $infoText; }
   .#{$item}-info[href]        { background-color: $infoText, 10%; }

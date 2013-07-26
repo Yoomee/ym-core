@@ -55,6 +55,7 @@ textarea {
 label {
   display: block;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 // Form controls
@@ -80,7 +81,7 @@ input[type="color"],
 .uneditable-input {
   display: inline-block;
   height: $baseLineHeight;
-  padding: 4px 6px;
+  padding: 7px 13px;
   margin-bottom: $baseLineHeight / 2;;
   font-size: $baseFontSize;
   line-height: $baseLineHeight;
@@ -350,15 +351,15 @@ input[type="checkbox"][readonly] {
 
 // Warning
 .control-group.warning {
-  @include formFieldState($warningText, $warningText, $warningBackground);
+  @include formFieldState($warningBackground, $warningBackground, $warningBackground);
 }
 // Error
 .control-group.error {
-  @include formFieldState($errorText, $errorText, $errorBackground);
+  @include formFieldState($errorBackground, $errorBackground, $errorBackground);
 }
 // Success
 .control-group.success {
-  @include formFieldState($successText, $successText, $successBackground);
+  @include formFieldState(#62c462, #62c462, #62c462);
 }
 // Info
 .control-group.info {
@@ -546,7 +547,7 @@ input.search-query {
   padding-left: 14px;
   padding-left: 4px \9; /* IE7-8 doesn't have border-radius, so don't indent the padding */
   margin-bottom: 0; // Remove the default margin on all inputs
-  @include border-radius(15px);
+  @include border-radius(3px);
 }
 
 /* Allow for input prepend/append in search forms */

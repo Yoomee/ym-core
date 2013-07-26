@@ -15,27 +15,25 @@
   font-size: $baseFontSize;
   line-height: $baseLineHeight;
   text-align: center;
+
   vertical-align: middle;
   cursor: pointer;
-  @include buttonBackground($btnBackground, $btnBackgroundHighlight, $grayDark, 0 1px 1px rgba(255,255,255,.75));
-
-	border: 1px solid $btnBorder;
-
-  *border: 0; // Remove the border to prevent IE7's black border on input:focus
+  background: $btnBackground;
+  @include buttonBackground($btnBackground, $btnBackgroundHighlight, $grayDark);
+  border: 0;
   @include border-radius($baseBorderRadius);
   @include ie7-restore-left-whitespace(); // Give IE7 some love
- 
+  
 
   // Hover/focus state
   &:hover,
   &:focus {
-    color: $grayDark;
     text-decoration: none;
-    background-position: 0 -15px;
+    background: lighten($btnBackground, 4%);
 
-    // transition is only when going to hover/focus, otherwise the background
-    // behind the gradient (there for IE<=9 fallback) gets mismatched
-    @include transition(background-position .1s linear);
+
+
+ 
   }
 
   // Focus state for keyboard and accessibility
@@ -48,7 +46,7 @@
   &:active {
     background-image: none;
     outline: 0;
-    @include box-shadow(inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05));
+    
   }
 
   // Disabled state
@@ -56,9 +54,12 @@
   &[disabled] {
     cursor: default;
     background-image: none;
+    background: $btnBackground;
     @include opacity(65);
     @include box-shadow(none);
   }
+
+  color: $buttonColor;
 
 }
 
@@ -144,33 +145,132 @@ input[type="button"] {
 // Set the backgrounds
 // -------------------------
 .btn-primary {
-  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
-	border: none;
+  background: $btnPrimaryBackground;
+  color: $buttonPrimaryColor;
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    background: lighten($btnPrimaryBackground, 4%);
+    color: $buttonPrimaryColor;
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    background: $btnPrimaryBackground;
+    color: $buttonPrimaryColor;
+  }
+
+
 }
+
 // Warning appears are orange
 .btn-warning {
-  @include buttonBackground($btnWarningBackground, $btnWarningBackgroundHighlight);
-	border: none;
+  background: $btnWarningBackground;
+  color: $buttonWarningColor;
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    background: lighten($btnWarningBackground, 6%);
+    color: $buttonWarningColor;
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    background: $btnWarningBackground;
+    color: $buttonWarningColor;
+  }
+
+
+
 }
+
 // Danger and error appear as red
 .btn-danger {
-  @include buttonBackground($btnDangerBackground, $btnDangerBackgroundHighlight);
-	border: none;
+  background:$btnDangerBackground;
+  color: $buttonDangerColor;
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    background: lighten($btnDangerBackground, 6%);
+    color: $buttonDangerColor;
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    background: $btnDangerBackground;
+    color: $buttonDangerColor;
+  }
 }
+
+
 // Success appears as green
 .btn-success {
-  @include buttonBackground($btnSuccessBackground, $btnSuccessBackgroundHighlight);
-	border: none;
+  background:$btnSuccessBackground;
+  color: $buttonSuccessColor;
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    background: lighten($btnSuccessBackground, 6%);
+    color: $buttonSuccessColor;
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    background: $btnSuccessBackground;
+    color: $buttonSuccessColor;
+  }
+
+
+
 }
 // Info appears as a neutral blue
 .btn-info {
-  @include buttonBackground($btnInfoBackground, $btnInfoBackgroundHighlight);
-	border: none;
+  background: $btnInfoBackground;
+  color: $buttonInfoColor;
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    background: lighten($btnInfoBackground, 6%);
+    color: $buttonInfoColor;
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    background: $btnInfoBackground;
+    color: $buttonInfoColor;
+  }
+
+
 }
 // Inverse appears as dark gray
 .btn-inverse {
-  @include buttonBackground($btnInverseBackground, $btnInverseBackgroundHighlight);
-	border: none;
+  background: $btnInverseBackground;
+  color: $buttonInverseColor;
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    background: lighten($btnInverseBackground, 6%);
+    color: $buttonInverseColor;
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    background: $btnInverseBackground;
+    color: $buttonInverseColor;
+  }
+  
 }
 
 
