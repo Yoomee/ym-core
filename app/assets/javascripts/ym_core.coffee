@@ -1,6 +1,6 @@
 #= require bootstrap
 #= require jquery-migrate
-#= require jquery-autogrow-textarea
+#= require autogrow
 #= require jquery.ui.all
 #= require jquery-ui-timepicker-addon
 
@@ -83,7 +83,7 @@ window.YmCore =
     init: () ->
       YmCore.Forms.LoadingText.init()
       YmCore.Forms.initDatepickers()
-      $('textarea:not(.redactor):not([data-dont-grow=true])').autoGrowTextArea()
+      $('textarea:not(.redactor):not([data-dont-grow=true])').autogrow()
       
   Modals:
     initAutoModal: () ->
