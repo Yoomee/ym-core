@@ -1,8 +1,8 @@
-#= require bootstrap
 #= require jquery-migrate
 #= require autogrow
 #= require jquery.ui.all
 #= require jquery-ui-timepicker-addon
+#= require bootstrap
 
 window.YmCore =
   addDefaults: (options, defaultOptions) ->
