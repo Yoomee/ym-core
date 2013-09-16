@@ -41,14 +41,14 @@ window.YmCore =
           `$(this)`.remove()
   Forms:
     initDatepickers: () ->
-      $('.datepicker').datepicker(
+      $('input.datepicker').datepicker(
         dateFormat: 'dd/mm/yy'
       )
-      $('.datetime').datetimepicker(
+      $('input..datetime').datetimepicker(
         dateFormat: 'dd/mm/yy'
         timeFormat: 'hh:mm'
       )
-      $('.timepicker').timepicker({
+      $('input..timepicker').timepicker({
         timeFormat: 'hh:mm',
         stepMinute: 5
       })
