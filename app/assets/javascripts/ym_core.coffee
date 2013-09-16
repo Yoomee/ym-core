@@ -46,11 +46,11 @@ window.YmCore =
       $('input.datepicker').datepicker(
         dateFormat: 'dd/mm/yy'
       )
-      $('input..datetime').datetimepicker(
+      $('input.datetime').datetimepicker(
         dateFormat: 'dd/mm/yy'
         timeFormat: 'hh:mm'
       )
-      $('input..timepicker').timepicker({
+      $('input.timepicker').timepicker({
         timeFormat: 'hh:mm',
         stepMinute: 5
       })
