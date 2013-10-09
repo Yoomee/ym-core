@@ -33,6 +33,14 @@
 .fade_in.fade_five  {-webkit-animation-delay: 0, 0.8s;}
 .fade_in.fade_six {-webkit-animation-delay: 0, 1s;}
 
+.anim-300 {
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -ms-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+
 .anim-150,
 #ym-navbar .nav > li > a,
 #scrollUp i,
