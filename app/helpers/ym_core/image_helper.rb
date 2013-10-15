@@ -8,8 +8,21 @@ module YmCore::ImageHelper
 
   def image_placeholder(geo_string, options = {})
     width, height = width_height_from_geo_string(geo_string)
-    text_param = "&text=#{CGI.escape(options[:text])}" if options[:text].present?
-    image_url = "http://placehold.it/#{[width,height].compact.join('x')}#{text_param}"
+    if options.delete(:photo)
+      image_url = "http://lorempixel.com".tap do |url|
+        url << "/g" if options.delete(:grayscale)
+        url << "/#{width}/#{height}"
+        categories = %w{abstract animals business cats city food nightlife fashion people nature sports technics transport}        
+        url << "/#{options.delete(:category).presence || categories.sample}"
+        url << "/#{options.delete(:number)}" if options[:number].present?
+        url << "/#{options.delete(:text)}" if options[:text].present?
+      end
+    else
+      image_url = "http://placehold.it/".tap do |url|
+        url << [width,height].compact.join('x')
+        url << "&text=#{CGI.escape(options.delete(:text))}" if options[:text].present?
+      end
+    end
     options[:image_url] ? "" : image_tag(image_url, options)
   end
 

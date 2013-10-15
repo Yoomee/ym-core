@@ -1,6 +1,8 @@
 #= require jquery-migrate
+#= require autogrow
 #= require jquery.ui.all
 #= require jquery-ui-timepicker-addon
+#= require bootstrap
 
 window.YmCore =
   addDefaults: (options, defaultOptions) ->
@@ -54,13 +56,25 @@ window.YmCore =
       })
     LoadingText:
       add: (elem) ->
-        submitBtn = elem.find("input[type='submit']")
-        loadingText = (submitBtn.data("loading-text") || 'Saving...')
-        submitBtn.addClass('disabled').attr('data-non-loading-text', submitBtn.val()).val(loadingText)
+        submitBtns = elem.find("input[type='submit']")
+        submitBtns.addClass('disabled')
+        clickedBtn = elem.find("input[type='submit'][data-clicked='true']")
+        if clickedBtn.length
+          submitBtn = clickedBtn
+        else
+          if submitBtns.length > 1
+            submitBtn = $((btn for btn in submitBtns when $(btn).data('primary') == true)[0])
+          else
+            submitBtn = $(submitBtns[0])
+        if submitBtn?
+          loadingText = (submitBtn.data("loading-text") || 'Saving...')
+          submitBtn.attr('data-non-loading-text', submitBtn.val()).val(loadingText)
       remove: (elem) ->
           submitBtn = elem.find("input[type='submit']")
           submitBtn.removeClass('disabled').val(submitBtn.data('non-loading-text'))
       init: () ->
+        $(".formtastic input[type='submit']").on "click", (event) ->
+          $(this).attr('data-clicked',true)
         $(".formtastic:not('.loading-text-disabled')").on "submit", ->
           YmCore.Forms.LoadingText.add($(this))
         unless typeof(ClientSideValidations) == 'undefined'
@@ -69,6 +83,8 @@ window.YmCore =
     init: () ->
       YmCore.Forms.LoadingText.init()
       YmCore.Forms.initDatepickers()
+      $('textarea:not(.redactor):not([data-dont-grow=true])').autogrow()
+      
   Modals:
     initAutoModal: () ->
       $('#flash-modal').modal('show')
