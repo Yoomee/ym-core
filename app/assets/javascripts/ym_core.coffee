@@ -3,6 +3,7 @@
 #= require jquery.ui.all
 #= require jquery-ui-timepicker-addon
 #= require bootstrap
+#= require bootstrap-colorpicker
 
 window.YmCore =
   addDefaults: (options, defaultOptions) ->
@@ -42,6 +43,10 @@ window.YmCore =
         new_modal.on 'hidden', () ->
           `$(this)`.remove()
   Forms:
+    initColorPickers: () ->
+      $('.colorpicker-control input').colorpicker().on 'changeColor', (colorpicker) ->
+        colorDisplay = $(this).parents('.colorpicker-control').find('.add-on i')
+        colorDisplay.css('background-color', colorpicker.color.toHex())
     initDatepickers: () ->
       $('input.datepicker').datepicker(
         dateFormat: 'dd/mm/yy'
@@ -83,6 +88,7 @@ window.YmCore =
     init: () ->
       YmCore.Forms.LoadingText.init()
       YmCore.Forms.initDatepickers()
+      YmCore.Forms.initColorPickers()
       $('textarea:not(.redactor):not([data-dont-grow=true])').autogrow()
       
   Modals:

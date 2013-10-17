@@ -9,7 +9,6 @@ class DatepickerInput < FormtasticBootstrap::Inputs::StringInput
   
   private
   def set_method
-    return true if 
     if !@method.to_s.ends_with?('_s') && @object.respond_to?("#{@method}_s")
       @method = "#{@method}_s".to_sym
     end
