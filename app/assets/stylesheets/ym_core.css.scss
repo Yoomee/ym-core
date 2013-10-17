@@ -4,24 +4,14 @@
 
 /*========== Defaults ==========*/
 
-.clear {
-  clear: both;
-}
-.hide {
-	display: none;
-}
-.relative {
-  position: relative;
-}
-.padding {
-  padding: 10px;
-}
-.no-margin {
-  margin: 0;
-}
-.no-padding {
-  padding: 0;
-}
+.clear { clear: both; }
+.hide { display: none; }
+.block { display: block; }
+.inline { display: inline; }
+.relative { position: relative; }
+.padding { padding: 10px; }
+.no-margin { margin: 0; }
+.no-padding { padding: 0; }
 
 /*========== Margin/Padding Overrides ===========*/
 
@@ -207,6 +197,7 @@
 
 .strikethrough { text-decoration: line-through; }
 .underline { text-decoration: underline; }
+.no-color, .no-color:hover { color: inherit; }
 .left, td.left, th.left { text-align:left; }
 .center, td.center, th.center { text-align:center; }
 .right, td.right, th.right { text-align:right; }
@@ -215,14 +206,10 @@
 .text-right { text-align: right; }
 .btn { text-shadow: none; }
 .border { border: 1px solid rgba(0,0,0,0.1); }
-
 .border-bottom {
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
 }
-.text-left { text-align: left; }
-.text-center { text-align: center; }
-.text-right { text-align: right; }
 .upcase {
   text-transform:uppercase;
 }
