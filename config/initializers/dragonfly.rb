@@ -13,10 +13,21 @@ end
 app = Dragonfly[:images]
 app.configure_with(:rails)
 app.configure_with(:imagemagick)
-app.configure do |c|
-  c.datastore.root_path = ::Rails.root.join('data/dragonfly', ::Rails.env).to_s
-  c.allow_fetch_file = true
-  c.allow_fetch_url = true
+if Settings.aws.try(:bucket_name)
+  app.datastore = Dragonfly::DataStorage::S3DataStore.new
+  app.datastore.configure do |c|
+    c.bucket_name = Settings.aws.bucket_name
+    c.access_key_id = Settings.aws.access_key_id
+    c.secret_access_key = Settings.aws.secret_access_key
+    c.region = Settings.aws.region
+    c.url_scheme = 'https'
+  end
+else
+  app.configure do |c|
+    c.datastore.root_path = ::Rails.root.join('data/dragonfly', ::Rails.env).to_s
+    c.allow_fetch_file = true
+    c.allow_fetch_url = true
+  end
 end
 
 ### Extend active record ###
