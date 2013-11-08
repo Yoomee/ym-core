@@ -3,7 +3,7 @@ class ImageInput < FormtasticBootstrap::Inputs::FileInput
   def to_html
     bootstrap_wrapping do
       out = ''
-      if object.send(input_name)
+      if object.send(input_name) && object.errors[input_name].blank?
         out << template.image_for(object, '60x60#', :method => input_name)
       end
       out << '<div class="image-inputs">'
