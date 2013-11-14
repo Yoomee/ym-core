@@ -22,11 +22,12 @@ module YmCore::FacebookHelper
 
   def facebook_post_to_feed_data(resource, options = {})
     data = resource.is_a?(Hash) ? resource : options.reverse_merge(resource.to_facebook_hash)
+    data[:ga_event] = options[:ga_event]
     if data[:url].blank?
       if data[:path].blank? && !resource.is_a?(Hash)
         data[:path] = polymorphic_path(resource)
       end
-      data[:url] = "#{facebook_app_url}#{data.delete(:path)}"
+      data[:url] = "#{Settings.site_url}#{data.delete(:path)}"
     end
     data[:description] = strip_tags(data[:description])
     data[:image_url] = URI.decode(data[:image_url]) if data[:image_url]
@@ -35,14 +36,8 @@ module YmCore::FacebookHelper
 
   private
   def init_facebook_post_to_feed
-    js = <<-JS
-    $(document).ready(function(){
-      Facebook.init();
-      Facebook.initPostToFeedLinks();
-    });
-    JS
     content_for :head do
-      js = javascript_tag_once(:init_facebook_post_to_feed, js)
+      js = javascript_tag_once(:init_facebook_post_to_feed, "$(function() {Facebook.init('#{Settings.facebook.app_id}'); Facebook.initPostToFeedLinks();});")
       javascript_include_tag_once('https://connect.facebook.net/en_GB/all.js') + js
     end
   end

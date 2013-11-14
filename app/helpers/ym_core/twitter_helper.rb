@@ -13,24 +13,6 @@ module YmCore::TwitterHelper
     tweet.gsub(/#([\w|\d]+)/, '<a target="_blank" href="http://twitter.com/search?q=%23\1">#\1</a>')
   end
   
-  def twitter_widget(username, widget_id, options={})
-    options.reverse_merge!(
-      :class => 'twitter-timeline',
-      :data => {
-        # :chrome => 'nofooter', hides reply box
-        :tweet_limit => 5
-      }
-    )
-    options[:data][:'widget-id'] = widget_id
-    unless @included_twitter_widget_js
-      content_for :head do
-        javascript_tag("!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','twitter-wjs');")
-      end
-      @included_twitter_widget_js = true
-    end
-    link_to("Tweets by @#{username}", "https://twitter.com/#{username}", options)
-  end
-
   def latest_tweets(screen_name, options = {})
     # NB exclude_replies is applied AFTER count  
     options.reverse_merge!(:count => 1, :include_entities => false, :exclude_replies => true, :trim_user => true)
@@ -49,6 +31,42 @@ module YmCore::TwitterHelper
 
   def latest_tweet(screen_name, options = {})
     latest_tweets(screen_name, options.reverse_merge(:count => 10)).first
+  end
+
+  def twitter_share_link(*args)
+    options = args.extract_options!
+    text, resource_or_url = args.size > 1 ? [args[0], args[1]] : ["<i class='icon-twitter'></i> <strong>Tweet</strong>".html_safe, args[0]]
+    link_options = {:class => "#{options.delete(:class)} btn twitter share-twitter".strip, :icon => options.delete(:icon), :data => {:ga_event => options.delete(:ga_event)}}
+    link_to(text, twitter_share_url(resource_or_url, options), link_options)
+  end
+
+  def twitter_share_url(resource_or_url, options = {})
+    if resource_or_url.is_a?(String)
+      options[:url] = resource_or_url
+    else
+      options[:url] = Settings.live_site_url + polymorphic_path(resource_or_url)
+    end
+    options[:url] = Settings.live_site_url + options[:url] unless options[:url] =~ /^http/
+    options[:text] = truncate(options[:text], :length => 115) if options[:text]
+    "https://twitter.com/share?#{options.to_query}"
+  end
+
+  def twitter_widget(username, widget_id, options={})
+    options.reverse_merge!(
+      :class => 'twitter-timeline',
+      :data => {
+        # :chrome => 'nofooter', hides reply box
+        :tweet_limit => 5
+      }
+    )
+    options[:data][:'widget-id'] = widget_id
+    unless @included_twitter_widget_js
+      content_for :head do
+        javascript_tag("!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','twitter-wjs');")
+      end
+      @included_twitter_widget_js = true
+    end
+    link_to("Tweets by @#{username}", "https://twitter.com/#{username}", options)
   end
 
 end

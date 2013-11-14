@@ -4,6 +4,7 @@
 #= require jquery-ui-timepicker-addon
 #= require bootstrap
 #= require bootstrap-colorpicker
+#= require sharing
 
 window.YmCore =
   addDefaults: (options, defaultOptions) ->
