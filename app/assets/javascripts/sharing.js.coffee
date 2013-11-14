@@ -26,7 +26,7 @@ window.Facebook =
         GoogleAnalytics.trackEvent('social', 'fb', options.ga_event)
 
 window.Twitter =
-  initSharingLinks:() ->
+  initShareLinks:() ->
     if $('a.share-twitter').length > 0
       $('.main-wrapper').on 'click', 'a.share-twitter', (event) ->
         event.preventDefault()

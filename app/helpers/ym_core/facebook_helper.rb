@@ -14,6 +14,7 @@ module YmCore::FacebookHelper
   end
 
   def facebook_post_to_feed_link(*args)
+    init_facebook_post_to_feed
     options = args.extract_options!
     text, resource = args.size > 1 ? [args[0], args[1]] : ["<i class='icon-facebook'></i> <strong>Facebook</strong>".html_safe, args[0]]
     link_options = {:class => "#{options.delete(:class)} btn facebook share-facebook".strip, :icon => options.delete(:icon)}
@@ -37,7 +38,7 @@ module YmCore::FacebookHelper
   private
   def init_facebook_post_to_feed
     content_for :head do
-      js = javascript_tag_once(:init_facebook_post_to_feed, "$(function() {Facebook.init('#{Settings.facebook.app_id}'); Facebook.initPostToFeedLinks();});")
+      js = javascript_tag_once(:init_facebook_post_to_feed, "$(function() { Facebook.init('#{Settings.facebook.app_id}'); Facebook.initPostToFeedLinks(); });")
       javascript_include_tag_once('https://connect.facebook.net/en_GB/all.js') + js
     end
   end

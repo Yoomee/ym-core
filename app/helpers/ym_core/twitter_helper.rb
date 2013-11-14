@@ -34,6 +34,7 @@ module YmCore::TwitterHelper
   end
 
   def twitter_share_link(*args)
+    init_twitter_share_link
     options = args.extract_options!
     text, resource_or_url = args.size > 1 ? [args[0], args[1]] : ["<i class='icon-twitter'></i> <strong>Tweet</strong>".html_safe, args[0]]
     link_options = {:class => "#{options.delete(:class)} btn twitter share-twitter".strip, :icon => options.delete(:icon), :data => {:ga_event => options.delete(:ga_event)}}
@@ -67,6 +68,13 @@ module YmCore::TwitterHelper
       @included_twitter_widget_js = true
     end
     link_to("Tweets by @#{username}", "https://twitter.com/#{username}", options)
+  end
+
+  private
+  def init_twitter_share_link
+    content_for :head do
+      javascript_tag_once(:init_twitter_share_link, '$(function() { Twitter.initShareLinks(); });')
+    end
   end
 
 end
