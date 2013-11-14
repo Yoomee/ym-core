@@ -21,9 +21,11 @@ window.Facebook =
       name: options.name
       caption: options.caption
       description: options.description
+    if options.ga_event?
+      GoogleAnalytics.trackEvent('social', 'fb-clicked', options.ga_event)
     FB.ui obj, (response) ->
       if response && options.ga_event?
-        GoogleAnalytics.trackEvent('social', 'fb', options.ga_event)
+        GoogleAnalytics.trackEvent('social', 'fb-posted', options.ga_event)
 
 window.Twitter =
   initShareLinks:() ->
