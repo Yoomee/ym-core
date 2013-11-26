@@ -5,9 +5,9 @@ module ActionView
         html_options = args[2] || {}
         if !block_given? && (icon = html_options.delete(:icon))
           if html_options.delete(:icon_last)
-            args[0] = "#{args[0]} <i class='icon-#{icon}'></i>".strip.html_safe
+            args[0] = "#{args[0]} <i class='fa fa-#{icon}'></i>".strip.html_safe
           else
-            args[0] = "<i class='icon-#{icon}'></i> #{args[0]}".strip.html_safe
+            args[0] = "<i class='fa fa-#{icon}'></i> #{args[0]}".strip.html_safe
           end
           args[2] = html_options
         end
