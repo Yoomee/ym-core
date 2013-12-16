@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails', '>= 3.2'
   s.add_dependency 'bootstrap-sass', '~> 3.0.2.0'
   s.add_dependency 'formtastic', '~> 2.2'
-  s.add_dependency 'formtastic-bootstrap', '~> 2.1'
+  s.add_dependency 'formtastic-bootstrap', '~> 3.0.0.rc.2'
 
   #https://github.com/nickl-/formtastic-bootstrap3
   s.add_dependency 'dragonfly', '~> 0.9.10'
