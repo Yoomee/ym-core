@@ -1,7 +1,6 @@
 module YmCore::GoogleApisHelper
   
   def google_analytics_js(options = {})
-    debugger
     if !(Rails.env =~ /test#{options[:allow_dev] ? '' : '|development'}/) && (tracker_code = Settings.google_analytics).present?
       options.reverse_merge!(:universal => true, :domain => Settings.site_url.sub(/(^https?:\/\/(www\.)?)?/, ''))
       javascript_tag do
