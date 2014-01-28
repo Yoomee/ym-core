@@ -1,6 +1,7 @@
 module YmCore::GoogleApisHelper
   
   def google_analytics_js(options = {})
+    debugger
     if !(Rails.env =~ /test#{options[:allow_dev] ? '' : '|development'}/) && (tracker_code = Settings.google_analytics).present?
       options.reverse_merge!(:universal => true, :domain => Settings.site_url.sub(/(^https?:\/\/(www\.)?)?/, ''))
       javascript_tag do
@@ -17,6 +18,7 @@ module YmCore::GoogleApisHelper
           "var _gaq = _gaq || [];
           _gaq.push(['_setAccount', '#{tracker_code}']);
           #{"_gaq.push(['_setDomainName', '#{options[:domain]}']);" if options[:domain]}
+          #{"_gaq.push(['_setAllowLinker', #{options[:allow_linker]}]);" if options[:allow_linker]}
           _gaq.push(['_trackPageview']);
 
           (function() {
