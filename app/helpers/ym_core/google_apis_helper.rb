@@ -17,6 +17,7 @@ module YmCore::GoogleApisHelper
           "var _gaq = _gaq || [];
           _gaq.push(['_setAccount', '#{tracker_code}']);
           #{"_gaq.push(['_setDomainName', '#{options[:domain]}']);" if options[:domain]}
+          #{"_gaq.push(['_setAllowLinker', #{options[:allow_linker]}]);" if options[:allow_linker]}
           _gaq.push(['_trackPageview']);
 
           (function() {
