@@ -26,7 +26,7 @@ window.YmCore =
         target_tab_link = $(".nav-tabs li a[href='#{window.location.hash}']").first()
         target_tab_link.tab('show') if target_tab_link.length
       # Highlight tabs with errors and activate first tab with errors
-      $('.tab-pane').has('input.error, .control-group.error').each (idx,pane) => 
+      $('.tab-pane').has('input.error, .control-group.error').each (idx,pane) =>
         link = $(".tabbable .nav a[href='##{$(pane).attr('id')}']")
         link.parent().addClass('error')
         link.tab('show') if idx is 0
@@ -34,7 +34,7 @@ window.YmCore =
     init: () ->
       # $('a[data-toggle]').on 'click', event, ->
       #   event.preventDefault()
-      $("[data-toggle='modal'][data-modal-url]").on 'click', -> 
+      $("[data-toggle='modal'][data-modal-url]").on 'click', ->
         $('.temp-modal').modal('hide')
         new_modal = $("<div class='modal temp-modal'></div>")
         if (`$(this)`.data('modal-id') != undefined)
@@ -90,8 +90,8 @@ window.YmCore =
       YmCore.Forms.LoadingText.init()
       YmCore.Forms.initDatepickers()
       YmCore.Forms.initColorPickers()
-      $('textarea:not(.redactor):not([data-dont-grow=true])').autogrow()
-      
+      $('textarea.autogrow').autogrow()
+
   Modals:
     initAutoModal: () ->
       $('#flash-modal').modal('show')
@@ -105,8 +105,8 @@ window.YmCore =
           else
             search_params = ""
           new_href = "#{window.location.origin}#{window.location.pathname}#{search_params}"
-          if history.pushState != undefined    
-            history.pushState 
+          if history.pushState != undefined
+            history.pushState
               path: this.path,
               '',
               new_href
@@ -117,7 +117,7 @@ window.YmCore =
         wrapper = $(this).parents('.read-more-wrapper:first')
         wrapper.children('.read-more-trunc').hide()
         wrapper.children('.read-more-full').show()
-      
+
   init: ->
     YmCore.Tabs.init()
     YmCore.Bootstrap.init()
