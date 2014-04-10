@@ -43,7 +43,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'guard-rspec'
   s.add_development_dependency 'geminabox'
   s.add_development_dependency 'rb-fsevent', '~> 0.9.1'
-  s.add_development_dependency 'ym_tools', '~> 1.0.0'
+  s.add_development_dependency 'ym_tools', '~> 0.1.13'
   s.add_development_dependency 'capybara-webkit'
   s.add_development_dependency 'listen', '~> 1.2.2'
   s.add_development_dependency 'database_cleaner', '1.2.0'
