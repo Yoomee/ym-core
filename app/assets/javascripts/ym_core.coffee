@@ -89,7 +89,7 @@ window.YmCore =
       YmCore.Forms.LoadingText.init()
       YmCore.Forms.initDatepickers()
       YmCore.Forms.initColorPickers()
-      $('textarea:not(.redactor):not([data-dont-grow=true])').autogrow()
+      $('textarea.autogrow').autogrow()
       
   Modals:
     initAutoModal: () ->
