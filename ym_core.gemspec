@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
 
   #https://github.com/nickl-/formtastic-bootstrap3
   s.add_dependency 'dragonfly', '~> 0.9.10'
+  s.add_dependency 'rack-cache'
   s.add_dependency 'rails_config', '~> 0.2.6'
   s.add_dependency 'will_paginate', '~> 3.0.3'
   s.add_dependency 'bootstrap-will_paginate', '~> 0.0.6'
