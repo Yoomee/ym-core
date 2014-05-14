@@ -3,7 +3,7 @@ module YmCore::Model
   def self.included(base)
     base.scope :without, (lambda do |ids_or_records|
       array = [*ids_or_records].collect{|i| i.is_a?(Integer) ? i : i.try(:id)}.reject(&:nil?)
-      array.empty? ? base.scoped : base.where(["#{base.table_name}.id NOT IN (?)", array])
+      array.empty? ? base.where(nil) : base.where(["#{base.table_name}.id NOT IN (?)", array])
     end)
     base.send(:include, YmCore::Model::AmountAccessor)
     base.send(:include, YmCore::Model::DateAccessor)
