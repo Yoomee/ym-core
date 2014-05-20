@@ -9,9 +9,10 @@ class ImageInput < FormtasticBootstrap::Inputs::FileInput
       out << '<div class="image-inputs">'
       out << builder.file_field(method, input_html_options)
       out << builder.hidden_field("retained_#{input_name}")
+      remove_label_text = options.delete(:remove_label) || "Remove #{label_text.downcase.gsub('<abbr title="required">*</abbr>', '')}"
       if object.send("#{input_name}_uid").present?
         out << template.content_tag(:label, :class => 'checkbox remove-image') do
-          builder.check_box("remove_#{input_name}") + " Remove #{label_text.downcase.gsub('<abbr title="required">*</abbr>', '')}"
+          builder.check_box("remove_#{input_name}") + " " + remove_label_text
         end
       end
       out << '</div>'
