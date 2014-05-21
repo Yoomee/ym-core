@@ -9,7 +9,10 @@ module YmCore
       def manifest
         copy_file "views/admin/index.html.haml", "app/views/admin/index.html.haml"
         # Migrations must go last
-        try_migration_template "migrations/create_redactor_uploads.rb", "db/migrate/create_redactor_uploads.rb"
+        Dir[File.dirname(__FILE__) + '/templates/migrations/*.rb'].each do |file_path|
+          file_name = file_path.split("/").last
+          try_migration_template "migrations/#{file_name}", "db/migrate/#{file_name.sub(/^\d+\_/, '')}"
+        end
       end
       
     end
