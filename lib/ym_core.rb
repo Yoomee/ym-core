@@ -2,6 +2,7 @@ require 'will_paginate'
 require 'bootstrap-will_paginate'
 require "ym_core/engine"
 require 'haml'
+require 'haml-rails'
 require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'formtastic'
