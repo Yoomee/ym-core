@@ -14,7 +14,7 @@ module YmCore::LayoutHelper
     end
     yield_content
   end
-  
+
   def yield_with_span(yield_content, options = {})
     options.reverse_merge!(:span_class => "col-md-12")
     first_div_class = yield_content.match(/^<div\s+[^>]*class=[\"\']([^\"\']+)[\"\']/i).try(:[], 1).to_s
@@ -50,17 +50,18 @@ module YmCore::LayoutHelper
   def id_for_body_tag
     is_home? ? 'home' : 'inside'
   end
-  
+
   def is_home?
     @is_home || controller_name == "home"
   end
 
   def classes_for_body_tag
-    [].tap do |classes|      
+    [].tap do |classes|
       classes << "controller_#{controller_name}"
       classes << "action_#{action_name}"
       classes << (current_user? ? 'logged_in' : 'logged_out')
       classes << (current_user ? 'logged_in' : 'logged_out')
+      classes << (current_user ? "role-#{current_user.role}" : 'role-anonymous')
       classes << "root_slug_#{@page.root_slug}" if defined?(@page) && @page && @page.root && @page.root_slug.present?
       classes << "slug_#{@page.slug}" if defined?(@page) && @page && @page.slug.present?
     end.join(' ')
