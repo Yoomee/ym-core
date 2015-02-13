@@ -32,21 +32,21 @@
   display:none;
 }
 .loading {
-  background-image: url(/assets/loader-circle.gif);
+  background-image: image-url('ym_core/loader-circle.gif');
   background-repeat:no-repeat;
   background-position:center center;
   height: 16px;
   color:white;
 }
 .loading.loader-long {
-  background-image: url(/assets/loader-long.gif);
-  height: 19px;  
+  background-image: image-url('ym_core/loader-long.gif');
+  height: 19px;
 }
 .loading.loader-circle {
-  background-image: url(/assets/loader-circle.gif);
+  background-image: image-url('ym_core/loader-circle.gif');
 }
 .loading.loader-square {
-  background-image: url(/assets/loader-square.gif);
+  background-image: image-url('ym_core/loader-square.gif');
   height: 11px;
 }
 .small-info-text {
