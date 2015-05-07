@@ -61,7 +61,7 @@ window.YmCore =
           submitBtn = elem.find("input[type='submit']")
           submitBtn.removeClass('disabled').val(submitBtn.data('non-loading-text'))
       init: () ->
-        $(".formtastic:not('.loading-text-disabled')").on "submit", ->
+        $(".simple_form:not('.loading-text-disabled')").on "submit", ->
           YmCore.Forms.LoadingText.add($(this))
         unless typeof(ClientSideValidations) == 'undefined'
           ClientSideValidations.callbacks.form.fail = (element, message, callback) ->
