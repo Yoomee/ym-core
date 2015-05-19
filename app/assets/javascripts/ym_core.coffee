@@ -30,7 +30,7 @@ window.YmCore =
     init: () ->
       # $('a[data-toggle]').on 'click', event, ->
       #   event.preventDefault()
-      $("[data-toggle='modal'][data-modal-url]").on 'click', -> 
+      $("body").on 'click', "[data-toggle='modal'][data-modal-url]", ->
         $('.temp-modal').modal('hide')
         new_modal = $("<div class='modal temp-modal'></div>")
         if (`$(this)`.data('modal-id') != undefined)
