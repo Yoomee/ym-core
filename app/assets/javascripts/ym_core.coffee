@@ -56,12 +56,13 @@ window.YmCore =
       add: (elem) ->
         submitBtn = elem.find("input[type='submit']")
         loadingText = (submitBtn.data("loading-text") || 'Saving...')
+        submitBtn.attr('disabled', true)
         submitBtn.addClass('disabled').attr('data-non-loading-text', submitBtn.val()).val(loadingText)
       remove: (elem) ->
           submitBtn = elem.find("input[type='submit']")
           submitBtn.removeClass('disabled').val(submitBtn.data('non-loading-text'))
       init: () ->
-        $(".simple_form:not('.loading-text-disabled')").on "submit", ->
+        $("body").on "submit", ".simple_form:not('.loading-text-disabled')", ->
           YmCore.Forms.LoadingText.add($(this))
         unless typeof(ClientSideValidations) == 'undefined'
           ClientSideValidations.callbacks.form.fail = (element, message, callback) ->
