@@ -90,7 +90,7 @@ window.YmCore =
               new_href
   ReadMoreTruncate:
     init: () ->
-      $('.read-more-link').on 'click', (event) ->
+      $('body').on 'click', '.read-more-link', (event) ->
         event.preventDefault()
         wrapper = $(this).parents('.read-more-wrapper:first')
         wrapper.children('.read-more-trunc').hide()
