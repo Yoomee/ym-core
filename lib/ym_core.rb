@@ -1,5 +1,5 @@
 require 'will_paginate'
-require 'bootstrap-will_paginate'
+require 'will_paginate-bootstrap'
 require "ym_core/engine"
 require 'haml'
 require 'jquery-rails'
