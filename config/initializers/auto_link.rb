@@ -1,1 +1,0 @@
-require 'rails_rinku' #replaces auto_link removed from Rails 3.1+
