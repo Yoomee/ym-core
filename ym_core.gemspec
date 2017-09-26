@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'haml'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
-  s.add_dependency 'sass-rails', '~> 3.2'
+  s.add_dependency 'sass-rails'
   s.add_dependency 'bootstrap-sass', '~> 2.3.1.0'
   s.add_dependency 'formtastic', '~> 2.2'
   s.add_dependency 'formtastic-bootstrap', '~> 2.1'
